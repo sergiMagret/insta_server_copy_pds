@@ -1,0 +1,838 @@
+{
+	"info": {
+		"_postman_id": "bd5fbfe1-32f8-4f86-9b2b-96dfa7656e68",
+		"name": "PDS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				},
+				"description": "llistar els ususaris"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"usuari\",\n\t\"password\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/users/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"login"
+					]
+				},
+				"description": "registrar usuari"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\",\n\t\"name\": \"yo\",\n\t\"description\": \"this is the description\",\n\t\"photo\": \"nose\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/users/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"register"
+					]
+				},
+				"description": "POST /users/register"
+			},
+			"response": [
+				{
+					"name": "Register user error: email already exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:30:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2019-02-14T10:30:34.497+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Email already exist\",\n    \"path\": \"/users/register\"\n}"
+				},
+				{
+					"name": "Register user ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:30:15 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "\"ok\""
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/users/logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/users/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"logout"
+					]
+				},
+				"description": "POST /users/logout"
+			},
+			"response": [
+				{
+					"name": "Logout error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/users/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:28:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2019-02-14T10:28:55.274+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User is not authenticated!\",\n    \"path\": \"/users/logout\"\n}"
+				},
+				{
+					"name": "Logout OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/users/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:28:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "\"ok\""
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/users/likedpublications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/likedpublications",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"likedpublications"
+					]
+				},
+				"description": "llistar els ususaris"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags"
+					]
+				},
+				"description": "get hashtags"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"SomeHashtag\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/hashtags",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags"
+					]
+				},
+				"description": "post hashtags"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags",
+						"1"
+					]
+				},
+				"description": "get hashtags"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags/1/publications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags/1/publications",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags",
+						"1",
+						"publications"
+					]
+				},
+				"description": "get hashtags"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"photo\": \"some photo\",\n\t\"description\": \"a description\",\n\t\"date\": \"2019-01-09T04:40:51\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/publications",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications"
+					]
+				},
+				"description": "post publications"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1"
+					]
+				},
+				"description": "post publications"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1"
+					]
+				},
+				"description": "post publications"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/likes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1/likes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"likes"
+					]
+				},
+				"description": "post publications"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/likes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1/likes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"likes"
+					]
+				},
+				"description": "post publications"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/likes/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1/likes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"likes",
+						"1"
+					]
+				},
+				"description": "post publications"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/comments",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1/comments",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"comments"
+					]
+				},
+				"description": "post publications"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/comments",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"date\":\"2019-01-09T04:40:51\",\n\t\"comment\":\"a simple comment\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/publications/1/comments",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"comments"
+					]
+				},
+				"description": "post publications"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/comments/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"date\":\"2019-01-09T04:40:51\",\n\t\"comment\":\"a simple comment\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/publications/1/comments/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"comments",
+						"1"
+					]
+				},
+				"description": "post publications"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/1/publications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/1/publications",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1",
+						"publications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/followers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/followers",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"followers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/followed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/followed",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"followed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/followed",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/followed",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"followed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/followed/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/users/followed/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"followed",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
