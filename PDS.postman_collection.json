@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e6ed4bd1-fa6f-4e22-951e-de7cfe4a5279",
+		"_postman_id": "9eae1ba1-799e-441f-91f9-660949b9f432",
 		"name": "PDS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -20,7 +20,7 @@
 						"users"
 					]
 				},
-				"description": "llistar els ususaris"
+				"description": "URI: <b> GET /users </b> <br>\nLlistar els ususaris de l'aplicació"
 			},
 			"response": []
 		},
@@ -40,7 +40,7 @@
 						"1"
 					]
 				},
-				"description": "llistar els ususaris"
+				"description": "URI: <b>GET /users/{id} </b> <br>\nDemanar l'usuari amb identificador \"id\"."
 			},
 			"response": []
 		},
@@ -64,7 +64,7 @@
 						"login"
 					]
 				},
-				"description": "registrar usuari"
+				"description": "URI: <b> POST /users/login </b> <br>\nIniciar sessió d'un usuari. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> username </li>\n\t<li> password </li>\n</ul>"
 			},
 			"response": []
 		},
@@ -82,7 +82,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\",\n\t\"name\": \"yo\",\n\t\"description\": \"this is the description\",\n\t\"photo\": \"nose\"\n\t\n}"
+					"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\",\n\t\"name\": \"yo\",\n\t\"description\": \"this is the description\",\n\t\"photo\": \"nose\"\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/users/register",
@@ -95,7 +95,7 @@
 						"register"
 					]
 				},
-				"description": "POST /users/register"
+				"description": "URI: <b> POST /users/register </b> <br>\nRegistrar un usuari. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> username </li>\n\t<li> email </li>\n\t<li> password </li>\n\t<li> name </li>\n\t<li> description </li>\n\t<li> photo </li>\n</ul>"
 			},
 			"response": [
 				{
@@ -227,7 +227,7 @@
 						"logout"
 					]
 				},
-				"description": "POST /users/logout"
+				"description": "URI: <b> POST /users/logout </b> <br>\nPer tancar la sessió de l'usuari amb la sessió iniciada."
 			},
 			"response": [
 				{
@@ -333,26 +333,6 @@
 			]
 		},
 		{
-			"name": "localhost:8080/users/self/likedpublications",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/users/likedpublications",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"likedpublications"
-					]
-				},
-				"description": "llistar els ususaris"
-			},
-			"response": []
-		},
-		{
 			"name": "localhost:8080/hashtags",
 			"request": {
 				"method": "GET",
@@ -367,7 +347,7 @@
 						"hashtags"
 					]
 				},
-				"description": "get hashtags"
+				"description": "URI: <b> GET /hashtags </b> <br>\nPer llistar tots els hashtags."
 			},
 			"response": []
 		},
@@ -402,7 +382,7 @@
 						"hashtags"
 					]
 				},
-				"description": "post hashtags"
+				"description": "URI: <b> POST /hashtags </b> <br>\nPer crear un hashtag nou. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> name </li>\n</ul>"
 			},
 			"response": []
 		},
@@ -422,7 +402,7 @@
 						"1"
 					]
 				},
-				"description": "get hashtags"
+				"description": "URI: <b> GET /hashtags/{id} </b> <br>\nPer agafar el hashtag amb identificador \"id\"."
 			},
 			"response": []
 		},
@@ -443,7 +423,7 @@
 						"publications"
 					]
 				},
-				"description": "get hashtags"
+				"description": "URI: <b> GET /hashtags/{id}/publications </b> <br>\nPer agafar les publicacions del hashtag amb identificador \"id\"."
 			},
 			"response": []
 		},
@@ -478,7 +458,7 @@
 						"publications"
 					]
 				},
-				"description": "post publications"
+				"description": "URI: <b> POST /publications/ </b> <br>\nPer crear una publicació nova.\nAl body hi ha d'haver:\n<ul>\n\t<li> photo </li>\n\t<li> description </li>\n\t<li> date </li>\n</ul>"
 			},
 			"response": []
 		},
@@ -506,7 +486,7 @@
 						"1"
 					]
 				},
-				"description": "post publications"
+				"description": "URI: <b> GET /publications/{id} </b> <br>\nPer agafar la publicació amb identificador \"id\"."
 			},
 			"response": []
 		},
@@ -534,7 +514,7 @@
 						"1"
 					]
 				},
-				"description": "post publications"
+				"description": "URI: <b> DELETE /publications/{id} </b> <br>\nPer esborrar la publicació amb identificador \"id\"."
 			},
 			"response": []
 		},
@@ -563,7 +543,7 @@
 						"likes"
 					]
 				},
-				"description": "post publications"
+				"description": "URI: <b> GET /publications/{id}/likes </b> <br>\nPer agafar els likes de la publicació amb identificador \"id\"."
 			},
 			"response": []
 		},
@@ -592,7 +572,7 @@
 						"likes"
 					]
 				},
-				"description": "post publications"
+				"description": "URI: <b> POST /publications/{id}/likes </b> <br>\nPer afegir un like a la publicació amb identificador \"id\"."
 			},
 			"response": []
 		},
@@ -622,7 +602,7 @@
 						"1"
 					]
 				},
-				"description": "post publications"
+				"description": "URI: <b> DELETE /publications/{pid}/likes/{lid} </b> <br>\nPer esborrar el like numero \"lid\" de la publicació amb identificador \"id\"."
 			},
 			"response": []
 		},
@@ -651,7 +631,7 @@
 						"comments"
 					]
 				},
-				"description": "post publications"
+				"description": "URI: <b> GET /publications/{id}/comments </b> <br>\nPer llistar els commentaris de la publicació amb identificador \"id\"."
 			},
 			"response": []
 		},
@@ -689,7 +669,7 @@
 						"comments"
 					]
 				},
-				"description": "post publications"
+				"description": "URI: <b> POST /publications/{id}/comments </b> <br>\nPer crear un nou comentari a la publicació amb identificador \"id\". <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> date </li>\n\t<li> comment </li>\n</ul>"
 			},
 			"response": []
 		},
@@ -708,7 +688,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"date\":\"2019-01-09T04:40:51\",\n\t\"comment\":\"a simple comment\"\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -728,7 +708,7 @@
 						"1"
 					]
 				},
-				"description": "post publications"
+				"description": "URI: <b> DELETE /publications/{pid}/comments/{cid} </b> <br>\nPer esborrar el commentari numero \"cid\" de la publicació amb identificador \"pid\"."
 			},
 			"response": []
 		},
@@ -748,7 +728,8 @@
 						"1",
 						"publications"
 					]
-				}
+				},
+				"description": "URI: <b> GET /users/{id}/publications </b> <br>\nPer llistar les publicacions de l'usuari amb identificador \"id\"."
 			},
 			"response": []
 		},
@@ -768,27 +749,8 @@
 						"self",
 						"publications"
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/users/self/followers",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/users/self/followers",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"self",
-						"followers"
-					]
-				}
+				},
+				"description": "URI: <b> GET /users/self/publications </b> <br>\nPer llistar les publicacions de l'usuari amb sessió iniciada."
 			},
 			"response": []
 		},
@@ -808,17 +770,18 @@
 						"1",
 						"followers"
 					]
-				}
+				},
+				"description": "URI: <b> GET /users/{id}/followers </b> <br>\nPer llistar els seguidors de l'usuari amb identificador \"id\"."
 			},
 			"response": []
 		},
 		{
-			"name": "localhost:8080/users/self/followed",
+			"name": "localhost:8080/users/self/followers",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/self/followed",
+					"raw": "localhost:8080/users/self/followers",
 					"host": [
 						"localhost"
 					],
@@ -826,9 +789,10 @@
 					"path": [
 						"users",
 						"self",
-						"followed"
+						"followers"
 					]
-				}
+				},
+				"description": "URI: <b> GET /users/self/followers </b> <br>\nPer llistar els seguidors de l'usuari amb sessió iniciada."
 			},
 			"response": []
 		},
@@ -848,7 +812,49 @@
 						"1",
 						"followed"
 					]
-				}
+				},
+				"description": "URI: <b> GET /users/{id}/followed </b> <br>\nPer llistar els usuaris que segueix l'usuari amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/self/followed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/self/followed",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"self",
+						"followed"
+					]
+				},
+				"description": "URI: <b> GET /users/self/followed </b> <br>\nPer llistar els usuaris que segueix l'usuari amb la sessió iniciada."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/self/likedpublications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/likedpublications",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"likedpublications"
+					]
+				},
+				"description": "URI: <b> GET /users/{id}}/likedpublications </b> <br>\nPer llistar les publicacions que li han agradat a l'usuari amb la sessió iniciada."
 			},
 			"response": []
 		},
@@ -884,7 +890,8 @@
 						"self",
 						"followed"
 					]
-				}
+				},
+				"description": "URI: <b> POST /users/self/followed </b> <br>\nPer afegir un usuari nou a la llista de seguidors de l'usuari amb la sessió iniciada. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> user </li>\n</ul>"
 			},
 			"response": []
 		},
@@ -913,7 +920,8 @@
 						"followed",
 						"1"
 					]
-				}
+				},
+				"description": "URI: <b> DELETE /users/self/followed/{id} </b> <br>\nPer esborrar l'usuari amb identificador {id} de la llista de seguits de l'usuari amb la sessió iniciada."
 			},
 			"response": []
 		}
