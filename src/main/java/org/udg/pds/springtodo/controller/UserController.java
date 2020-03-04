@@ -5,13 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
+import org.udg.pds.springtodo.entity.Group;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.entity.Views;
+import org.udg.pds.springtodo.service.GroupService;
 import org.udg.pds.springtodo.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
+import java.util.Date;
 
 // This class is used to process all the authentication related URLs
 @RequestMapping(path="/users")
@@ -21,7 +25,10 @@ public class UserController extends BaseController {
   @Autowired
   UserService userService;
 
-  @PostMapping(path="/login")
+    @Autowired
+    GroupService groupService;
+
+    @PostMapping(path="/login")
   @JsonView(Views.Private.class)
   public User login(HttpSession session, @Valid @RequestBody LoginUser user) {
 
@@ -92,8 +99,26 @@ public class UserController extends BaseController {
     return BaseController.OK_MESSAGE;
   }
 
+    @GetMapping(path = "/me/ownedGroups")
+    @JsonView(Views.Private.class)
+    public Collection<Group> getOwnedGroups(HttpSession session) {
+        Long userId = getLoggedUser(session);
 
-  static class LoginUser {
+        return groupService.getOwnedGroups(userId);
+    }
+
+    @GetMapping(path = "/me/memberGroups")
+    @JsonView(Views.Private.class)
+    public Collection<Group> getMemberGroups(HttpSession session) {
+        Long userId = getLoggedUser(session);
+
+        return groupService.getMemberGroups(userId);
+    }
+
+
+
+
+    static class LoginUser {
     @NotNull
     public String username;
     @NotNull
