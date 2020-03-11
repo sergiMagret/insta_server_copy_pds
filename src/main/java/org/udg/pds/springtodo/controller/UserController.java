@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
 import org.udg.pds.springtodo.entity.Group;
+import org.udg.pds.springtodo.entity.Task;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.entity.Views;
 import org.udg.pds.springtodo.service.GroupService;
@@ -38,6 +39,15 @@ public class UserController extends BaseController {
     session.setAttribute("simpleapp_auth_id", u.getId());
     return u;
   }
+
+    @GetMapping
+    @JsonView(Views.Private.class)
+    public Collection<User> listAllTasks(HttpSession session,
+                                         @RequestParam(value = "from", required = false) Date from) {
+        Long userId = getLoggedUser(session);
+
+        return userService.getUsers();
+    }
 
   @PostMapping(path="/logout")
   @JsonView(Views.Private.class)
