@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.udg.pds.springtodo.entity.IdObject;
+import org.udg.pds.springtodo.entity.Publication;
 import org.udg.pds.springtodo.entity.Tag;
 import org.udg.pds.springtodo.entity.User;
+import org.udg.pds.springtodo.service.PublicationService;
 import org.udg.pds.springtodo.service.TagService;
 import org.udg.pds.springtodo.service.TaskService;
 import org.udg.pds.springtodo.service.UserService;
@@ -16,6 +18,7 @@ import org.udg.pds.springtodo.service.UserService;
 import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 @Service
@@ -37,6 +40,10 @@ public class Global {
     @Autowired
     private
     TagService tagService;
+
+    @Autowired
+    private
+    PublicationService publicationService;
 
     @Value("${todospring.minio.url:}")
     private String minioURL;
@@ -81,6 +88,18 @@ public class Global {
     private void initData() {
         logger.info("Starting populating database ...");
         User user = userService.register("usuari", "usuari@hotmail.com", "123456");
+
+        /* Adding two publications associated with the user with id=1. */
+        Publication p = new Publication("this is a publication", "this is its description", new Date(2020, Calendar.JULY, 23));
+        p.setUser(user);
+        user.addPublication(p);
+        publicationService.addPublication(p);
+
+        p = new Publication("this is another publication", "this is the second description", new Date(2020, Calendar.APRIL, 28));
+        p.setUser(user);
+        user.addPublication(p);
+        publicationService.addPublication(p);
+
         IdObject taskId = taskService.addTask("Una tasca", user.getId(), new Date(), new Date());
         Tag tag = tagService.addTag("ATag", "Just a tag");
         taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{

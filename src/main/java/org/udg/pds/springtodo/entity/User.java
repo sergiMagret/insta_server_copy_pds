@@ -1,14 +1,12 @@
 package org.udg.pds.springtodo.entity;
 
 import com.fasterxml.jackson.annotation.*;
+import org.udg.pds.springtodo.service.PublicationService;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "users")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"email", "username"}))
@@ -26,7 +24,7 @@ public class User implements Serializable {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.tasks = new ArrayList<>();
+        this.publications = new ArrayList<>();
     }
 
     @Id
@@ -47,6 +45,7 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Publication> publications;
+    /** Pot ser s'hauria de fer servir el @JoinColumn per no tenir les publicacions sino els seus IDs?? **/
 
     // Use Set<> to avoid duplicates. A group cannot be owned more than once
     @OneToMany(mappedBy = "owner")
@@ -87,6 +86,20 @@ public class User implements Serializable {
         // More: http://www.javabeat.net/jpa-lazy-eager-loading/
         tasks.size();
         return tasks;
+    }
+
+    @JsonIgnore
+    public Collection<Publication> getPublications(){
+        // Since publications is collection controlled by JPA, it has LAZY loading by default. That means
+        // that you have to query the object (calling size(), for example) to get the list initialized
+        // More: http://www.javabeat.net/jpa-lazy-eager-loading/
+        publications.size();
+
+        return publications;
+    }
+
+    public void addPublication(Publication p){
+        this.publications.add(p);
     }
 
     public void addTask(Task task) {

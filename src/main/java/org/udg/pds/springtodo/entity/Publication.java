@@ -50,7 +50,7 @@ public class Publication implements Serializable {
     @Column(name = "fk_user", insertable = false, updatable = false)
     private Long userId;
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public Long getId() {
         return id;
     }
@@ -68,12 +68,12 @@ public class Publication implements Serializable {
         this.user = user;
     }
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public String getPhoto() {
         return photo;
     }
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public String getDescription() {
         return description;
     }
@@ -83,7 +83,7 @@ public class Publication implements Serializable {
         return userId;
     }
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     @JsonSerialize(using = JsonDateSerializer.class)
     @JsonDeserialize(as= JsonDateDeserializer.class)
     public Date getDate() {
