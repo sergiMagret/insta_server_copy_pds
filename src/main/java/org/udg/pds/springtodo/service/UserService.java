@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
+import org.udg.pds.springtodo.entity.Publication;
 import org.udg.pds.springtodo.entity.Task;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.repository.UserRepository;

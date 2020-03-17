@@ -5,20 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
-import org.udg.pds.springtodo.entity.Group;
-import org.udg.pds.springtodo.entity.Task;
-import org.udg.pds.springtodo.entity.User;
-import org.udg.pds.springtodo.entity.Views;
+import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.service.GroupService;
+import org.udg.pds.springtodo.service.PublicationService;
 import org.udg.pds.springtodo.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
-// This class is used to process all the authentication related URLs
+// This class is used to process all the User related URLs
 @RequestMapping(path="/users")
 @RestController
 public class UserController extends BaseController {
@@ -28,6 +27,9 @@ public class UserController extends BaseController {
 
     @Autowired
     GroupService groupService;
+
+    @Autowired
+    PublicationService publicationService;
 
     @PostMapping(path="/login")
   @JsonView(Views.Private.class)
@@ -59,16 +61,39 @@ public class UserController extends BaseController {
     return BaseController.OK_MESSAGE;
   }
 
-  @GetMapping(path="/{id}")
-  @JsonView(Views.Public.class)
-  public User getPublicUser(HttpSession session, @PathVariable("id") Long userId) {
+    /** For the public view, when a user requests to see another user's basic information. **/
+    @GetMapping(path="/{id}")
+    @JsonView(Views.Public.class)
+    public User getPublicUser(HttpSession session, @PathVariable("id") Long userId) {
+        getLoggedUser(session);
+        return userService.getUser(userId);
+    }
 
-    getLoggedUser(session);
+    /** For the user who wants to see another user's publications. **/
+    @GetMapping(path="/{id}/publications")
+    @JsonView(Views.Public.class)
+    public Collection<Publication> getUserPublicationsPublic(HttpSession session, @PathVariable("id") Long userId){
+        getLoggedUser(session);
+        return publicationService.getUserPublications(userId);
+    }
 
-    return userService.getUser(userId);
-  }
+    /** For the private view of your own profile, a user wants to see its own profile with all the information. **/
+    @GetMapping(path="/self")
+    @JsonView(Views.Private.class)
+    public User getPrivateUser(HttpSession session){
+        Long userId = getLoggedUser(session);
+        return userService.getUser(userId);
+    }
 
-  @DeleteMapping(path="/{id}")
+    /** For the authenticated user who is trying to see his/her own photos. */
+    @GetMapping(path="/self/publications")
+    @JsonView(Views.Private.class)
+    public Collection<Publication> getUserPublicationsPrivate(HttpSession session) {
+        Long userId = getLoggedUser(session);
+        return publicationService.getUserPublications(userId);
+    }
+
+    @DeleteMapping(path="/{id}")
   public String deleteUser(HttpSession session, @PathVariable("id") Long userId) {
 
     Long loggedUserId = getLoggedUser(session);
