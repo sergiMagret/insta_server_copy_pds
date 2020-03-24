@@ -20,10 +20,13 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String name, String email, String password, String description, String profilePicture) {
         this.username = username;
+        this.name = name;
         this.email = email;
         this.password = password;
+        this.description = description;
+        this.profilePicture = profilePicture;
         this.publications = new ArrayList<>();
     }
 
@@ -33,6 +36,15 @@ public class User implements Serializable {
 
     @NotNull
     private String username;
+
+    @NotNull
+    private String name;
+
+    @NotNull
+    private String description;
+
+    @NotNull
+    private String profilePicture;
 
     @NotNull
     private String email;
@@ -74,6 +86,21 @@ public class User implements Serializable {
         return username;
     }
 
+    @JsonView(Views.Public.class)
+    public String getName(){
+        return name;
+    }
+
+    @JsonView(Views.Public.class)
+    public String getDescription(){
+        return description;
+    }
+
+    @JsonView(Views.Public.class)
+    public String getProfilePicture(){
+        return profilePicture;
+    }
+
     @JsonIgnore
     public String getPassword() {
         return password;
@@ -96,6 +123,11 @@ public class User implements Serializable {
         publications.size();
 
         return publications;
+    }
+
+    @JsonView(Views.Public.class)
+    public Integer getNumberPublications(){
+        return this.publications.size();
     }
 
     public void addPublication(Publication p){
