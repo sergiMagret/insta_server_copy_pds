@@ -112,9 +112,8 @@ public class UserController extends BaseController {
   public String register(HttpSession session, @Valid  @RequestBody RegisterUser ru) {
 
     checkNotLoggedIn(session);
-    userService.register(ru.username, ru.email, ru.password);
+    userService.register(ru.username, ru.name, ru.email, ru.password, ru.description, ru.profilePicture);
     return BaseController.OK_MESSAGE;
-
   }
 
   @GetMapping(path="/me")
@@ -164,9 +163,15 @@ public class UserController extends BaseController {
     @NotNull
     public String username;
     @NotNull
+    public String name;
+    @NotNull
     public String email;
     @NotNull
     public String password;
+    @NotNull
+      public String description;
+    @NotNull
+      public String profilePicture;
   }
 
   static class ID {

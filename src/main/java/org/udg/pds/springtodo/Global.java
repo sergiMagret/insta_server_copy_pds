@@ -87,15 +87,25 @@ public class Global {
 
     private void initData() {
         logger.info("Starting populating database ...");
-        User user = userService.register("usuari", "usuari@hotmail.com", "123456");
+        String desc = "Hi! I'm the default user and this is my description.";
+        String profPic = "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png";
+        User user = userService.register("usuari", "Usuari Per Defecte", "usuari@hotmail.com", "123456", desc, profPic);
 
-        /* Adding two publications associated with the user with id=1. */
-        Publication p = new Publication("this is a publication", "this is its description", new Date(2020, Calendar.JULY, 23));
+        /* Adding three publications associated with the user with id=1. */
+        String publicationURL = "https://iso.500px.com/wp-content/uploads/2014/07/big-one.jpg";
+        Publication p = new Publication(publicationURL, "this is the first description", new Date(2020, Calendar.JULY, 23));
         p.setUser(user);
         user.addPublication(p);
         publicationService.addPublication(p);
 
-        p = new Publication("this is another publication", "this is the second description", new Date(2020, Calendar.APRIL, 28));
+        publicationURL = "https://image.shutterstock.com/image-photo/colorful-hot-air-balloons-flying-260nw-1033306540.jpg";
+        p = new Publication(publicationURL, "this is the second description", new Date(2020, Calendar.APRIL, 28));
+        p.setUser(user);
+        user.addPublication(p);
+        publicationService.addPublication(p);
+
+        publicationURL = "https://iso.500px.com/wp-content/uploads/2014/06/W4A2827-1-3000x2000.jpg";
+        p = new Publication(publicationURL, "this is the third description!", new Date(2020, Calendar.APRIL, 28));
         p.setUser(user);
         user.addPublication(p);
         publicationService.addPublication(p);
@@ -105,7 +115,23 @@ public class Global {
         taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{
             add(tag.getId());
         }});
-        userService.register("user", "user@hotmail.com", "0000");
+
+        profPic = "https://www.dailymoss.com/wp-content/uploads/2019/08/funny-profile-pic59.jpg";
+        desc = "Hi! I'm another user and this is my description.\nI like things like music :)";
+        user = userService.register("user", "User By Default", "user@hotmail.com", "0000", desc, profPic);
+
+        /* Adding two publications associated with the user with id=2. */
+        publicationURL = "https://petapixel.com/assets/uploads/2019/06/manipulatedelephant-800x534.jpg";
+        p = new Publication(publicationURL, "this is an elephant!!", new Date(2020, Calendar.APRIL, 28));
+        p.setUser(user);
+        user.addPublication(p);
+        publicationService.addPublication(p);
+
+        publicationURL = "https://i.redd.it/g1ot0484k6821.png";
+        p = new Publication(publicationURL, "this is a funny meme i found today on the internet", new Date(2020, Calendar.APRIL, 28));
+        p.setUser(user);
+        user.addPublication(p);
+        publicationService.addPublication(p);
     }
 
     public MinioClient getMinioClient() {
