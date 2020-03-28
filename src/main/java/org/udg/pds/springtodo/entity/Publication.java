@@ -69,6 +69,11 @@ public class Publication implements Serializable {
     }
 
     @JsonView(Views.Public.class)
+    public String getUserUsername() {
+        return user.getUsername();
+    }
+
+    @JsonView(Views.Public.class)
     public String getPhoto() {
         return photo;
     }
