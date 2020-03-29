@@ -109,11 +109,13 @@ public class UserController extends BaseController {
 
 
   @PostMapping(path="/register", consumes = "application/json")
-  public String register(HttpSession session, @Valid  @RequestBody RegisterUser ru) {
+  @JsonView(Views.Private.class)
+  public User register(HttpSession session, @Valid  @RequestBody RegisterUser ru) {
 
     checkNotLoggedIn(session);
-    userService.register(ru.username, ru.name, ru.email, ru.password, ru.description, ru.profilePicture);
-    return BaseController.OK_MESSAGE;
+    User u = userService.register(ru.username, ru.name, ru.email, ru.password, ru.description, ru.profilePicture);
+    session.setAttribute("simpleapp_auth_id", u.getId());
+    return u;
   }
 
   @GetMapping(path="/me")
