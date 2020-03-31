@@ -1,0 +1,983 @@
+{
+	"info": {
+		"_postman_id": "9eae1ba1-799e-441f-91f9-660949b9f432",
+		"name": "PDS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				},
+				"description": "URI: <b> GET /users </b> <br>\nLlistar els ususaris de l'aplicació"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1"
+					]
+				},
+				"description": "URI: <b>GET /users/{id} </b> <br>\nDemanar l'usuari amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/self",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/self",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"self"
+					]
+				},
+				"description": "URI: <b>GET /users/{id} </b> <br>\nDemanar l'usuari amb identificador \"id\", en aquest cas \"self\", és a dir, ell mateix."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"usuari\",\n\t\"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"login"
+					]
+				},
+				"description": "URI: <b> POST /users/login </b> <br>\nIniciar sessió d'un usuari. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> username </li>\n\t<li> password </li>\n</ul>"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\",\n\t\"name\": \"yo\",\n\t\"description\": \"this is an unusual large description, I don't know what's gonna happen if the description is soo large.\\nIguess we'll see! :)\",\n\t\"profilePicture\": \"https://images.unsplash.com/photo-1559628129-67cf63b72248?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/users/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"register"
+					]
+				},
+				"description": "URI: <b> POST /users/register </b> <br>\nRegistrar un usuari. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> username </li>\n\t<li> email </li>\n\t<li> password </li>\n\t<li> name </li>\n\t<li> description </li>\n\t<li> profilePicture </li>\n</ul>"
+			},
+			"response": [
+				{
+					"name": "Register user ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:30:15 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "\"ok\""
+				},
+				{
+					"name": "Register user error: email already exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:30:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2019-02-14T10:30:34.497+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Email already exist\",\n    \"path\": \"/users/register\"\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/users/logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/users/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"logout"
+					]
+				},
+				"description": "URI: <b> POST /users/logout </b> <br>\nPer tancar la sessió de l'usuari amb la sessió iniciada."
+			},
+			"response": [
+				{
+					"name": "Logout OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/users/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:28:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "\"ok\""
+				},
+				{
+					"name": "Logout error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/users/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:28:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2019-02-14T10:28:55.274+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User is not authenticated!\",\n    \"path\": \"/users/logout\"\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/hashtags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags"
+					]
+				},
+				"description": "URI: <b> GET /hashtags </b> <br>\nPer llistar tots els hashtags."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"SomeHashtag\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/hashtags",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags"
+					]
+				},
+				"description": "URI: <b> POST /hashtags </b> <br>\nPer crear un hashtag nou. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> name </li>\n</ul>"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags",
+						"1"
+					]
+				},
+				"description": "URI: <b> GET /hashtags/{id} </b> <br>\nPer agafar el hashtag amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags/1/publications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags/1/publications",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags",
+						"1",
+						"publications"
+					]
+				},
+				"description": "URI: <b> GET /hashtags/{id}/publications </b> <br>\nPer agafar les publicacions del hashtag amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"photo\": \"some photo\",\n\t\"description\": \"a description\",\n\t\"date\": \"2019-01-09T04:40:51\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/publications",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications"
+					]
+				},
+				"description": "URI: <b> POST /publications/ </b> <br>\nPer crear una publicació nova.\nAl body hi ha d'haver:\n<ul>\n\t<li> photo </li>\n\t<li> description </li>\n\t<li> date </li>\n</ul>"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1"
+					]
+				},
+				"description": "URI: <b> GET /publications/{id} </b> <br>\nPer agafar la publicació amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						""
+					]
+				},
+				"description": "URI: <b> GET /publications </b> <br>\nPer agafar totes les publicacions."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1"
+					]
+				},
+				"description": "URI: <b> DELETE /publications/{id} </b> <br>\nPer esborrar la publicació amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/likes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1/likes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"likes"
+					]
+				},
+				"description": "URI: <b> GET /publications/{id}/likes </b> <br>\nPer agafar els likes de la publicació amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/likes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1/likes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"likes"
+					]
+				},
+				"description": "URI: <b> POST /publications/{id}/likes </b> <br>\nPer afegir un like a la publicació amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/likes/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1/likes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"likes",
+						"1"
+					]
+				},
+				"description": "URI: <b> DELETE /publications/{pid}/likes/{lid} </b> <br>\nPer esborrar el like numero \"lid\" de la publicació amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/comments",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/publications/1/comments",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"comments"
+					]
+				},
+				"description": "URI: <b> GET /publications/{id}/comments </b> <br>\nPer llistar els commentaris de la publicació amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/comments",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"date\":\"2019-01-09T04:40:51\",\n\t\"comment\":\"a simple comment\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/publications/1/comments",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"comments"
+					]
+				},
+				"description": "URI: <b> POST /publications/{id}/comments </b> <br>\nPer crear un nou comentari a la publicació amb identificador \"id\". <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> date </li>\n\t<li> comment </li>\n</ul>"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/comments/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/publications/1/comments/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"comments",
+						"1"
+					]
+				},
+				"description": "URI: <b> DELETE /publications/{pid}/comments/{cid} </b> <br>\nPer esborrar el commentari numero \"cid\" de la publicació amb identificador \"pid\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/1/publications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/1/publications",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1",
+						"publications"
+					]
+				},
+				"description": "URI: <b> GET /users/{id}/publications </b> <br>\nPer llistar les publicacions de l'usuari amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/self/publications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/self/publications",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"self",
+						"publications"
+					]
+				},
+				"description": "URI: <b> GET /users/self/publications </b> <br>\nPer llistar les publicacions de l'usuari amb sessió iniciada."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/1/followers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/1/followers",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1",
+						"followers"
+					]
+				},
+				"description": "URI: <b> GET /users/{id}/followers </b> <br>\nPer llistar els seguidors de l'usuari amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/self/followers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/self/followers",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"self",
+						"followers"
+					]
+				},
+				"description": "URI: <b> GET /users/self/followers </b> <br>\nPer llistar els seguidors de l'usuari amb sessió iniciada."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/1/followed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/1/followed",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1",
+						"followed"
+					]
+				},
+				"description": "URI: <b> GET /users/{id}/followed </b> <br>\nPer llistar els usuaris que segueix l'usuari amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/self/followed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/self/followed",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"self",
+						"followed"
+					]
+				},
+				"description": "URI: <b> GET /users/self/followed </b> <br>\nPer llistar els usuaris que segueix l'usuari amb la sessió iniciada."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/self/likedpublications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/likedpublications",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"likedpublications"
+					]
+				},
+				"description": "URI: <b> GET /users/{id}}/likedpublications </b> <br>\nPer llistar les publicacions que li han agradat a l'usuari amb la sessió iniciada."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/self/followed",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/self/followed",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"self",
+						"followed"
+					]
+				},
+				"description": "URI: <b> POST /users/self/followed </b> <br>\nPer afegir un usuari nou a la llista de seguidors de l'usuari amb la sessió iniciada. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> user </li>\n</ul>"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/self/followed/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/users/self/followed/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"self",
+						"followed",
+						"1"
+					]
+				},
+				"description": "URI: <b> DELETE /users/self/followed/{id} </b> <br>\nPer esborrar l'usuari amb identificador {id} de la llista de seguits de l'usuari amb la sessió iniciada."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
