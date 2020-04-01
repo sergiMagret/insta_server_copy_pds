@@ -1,9 +1,8 @@
 # Sprint 1
 ## Ainhoa Vázquez Zarza
-* [Create an Add Photo interface](https://wuilder.com/jira/browse/PDS20_2B-29) -> 21
-* [Add mapping into server for POST /publications](https://wuilder.com/jira/browse/PDS20_2B-30) -> 34
-* [Add maping into POST /users/self/publications](https://wuilder.com/jira/browse/PDS20_2B-52) -> 21
-* [Add publication with an url](https://wuilder.com/jira/browse/PDS20_2B-56) -> 8
+* [Create an Add Photo interface](https://wuilder.com/jira/browse/PDS20_2B-29)
+* [Add mapping into server for POST /publications](https://wuilder.com/jira/browse/PDS20_2B-30)
+* [Add maping into POST /users/self/publications](https://wuilder.com/jira/browse/PDS20_2B-52)
 
 
 ## Maria Sunyer i Rigau
@@ -20,7 +19,13 @@
 * [Get the owner's username from a publication](https://wuilder.com/jira/browse/PDS20_2B-48) -> 2 SP
 
 ## Pau Casademont i Colomer
-*
+* [Create Sing In interface](https://wuilder.com/jira/browse/PDS20_2B-17) -> 21 SP 
+* [Add mapping into server for POST /users/login](https://wuilder.com/jira/browse/PDS20_2B-18) -> 0 SP
+* [Create Log Out interface](https://wuilder.com/jira/browse/PDS20_2B-19) -> 13 SP 
+* [Modify retrofit API to request log out](https://wuilder.com/jira/browse/PDS20_2B-20) -> 21 SP 
+* [Create AlertDialog in userProfile with logout_layout](https://wuilder.com/jira/browse/PDS20_2B-49) -> 21 SP
+* [Only show log out button when It's the private profile](https://wuilder.com/jira/browse/PDS20_2B-51) -> 8 SP
+
 
 ## Roger Canet Roca
 * [Create register interface](https://wuilder.com/jira/browse/PDS20_2B-15) -> 21 SP
