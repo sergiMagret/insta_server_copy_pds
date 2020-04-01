@@ -52,8 +52,8 @@ public class PublicationController  extends BaseController{
 
     @PostMapping (consumes = "application/json")
     @JsonView(Views.Private.class)
-    public Publication postPublication (HttpSession session,@Valid @RequestBody String descripcion){
-        Publication p = new Publication("https://www.dailymoss.com/wp-content/uploads/2019/08/funny-profile-pic59.jpg",descripcion, new Date(2020, Calendar.APRIL, 28));
+    public Publication postPublication (HttpSession session,@Valid @RequestBody PublicationPost pub){
+        Publication p = new Publication(pub.photo, pub.description, pub.date);
         Long loggedUserId = getLoggedUser(session);
         User u = userService.getUserProfile(loggedUserId);
         p.setUser(u);
@@ -61,6 +61,16 @@ public class PublicationController  extends BaseController{
         publicationService.addPublication(p);
         return p;
     }
+
+    static class PublicationPost {
+        @NotNull
+        public String photo;
+        @NotNull
+        public String description;
+        @NotNull
+        public Date date;
+    }
+
 
 }
 
