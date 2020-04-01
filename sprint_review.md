@@ -11,6 +11,8 @@
 * [Order mapping by alphabetical order](https://wuilder.com/jira/browse/PDS20_2B-36) -> 8 SP
 * [Search users in the recycle view](https://wuilder.com/jira/browse/PDS20_2B-39) -> 34 SP
 
+TOTAL: 97 SP
+
 ## Oliu Llorente Moragrega
 * [Add mapping into server for GET/publications](https://wuilder.com/jira/browse/PDS20_2B-32) -> 21 SP
 * [Create the toolbar on the timeline interface](https://wuilder.com/jira/browse/PDS20_2B-33) -> 13 SP
