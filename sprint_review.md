@@ -1,6 +1,9 @@
 # Sprint 1
 ## Ainhoa Vázquez Zarza
-* 
+* [Create an Add Photo interface](https://wuilder.com/jira/browse/PDS20_2B-29)
+* [Add mapping into server for POST /publications](https://wuilder.com/jira/browse/PDS20_2B-30)
+* [Add maping into POST /users/self/publications](https://wuilder.com/jira/browse/PDS20_2B-52)
+
 
 ## Maria Sunyer i Rigau
 * [Add mapping into server for GET /users](https://wuilder.com/jira/browse/PDS20_2B-31)
