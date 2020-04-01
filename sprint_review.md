@@ -1,8 +1,10 @@
 # Sprint 1
 ## Ainhoa Vázquez Zarza
-* [Create an Add Photo interface](https://wuilder.com/jira/browse/PDS20_2B-29)
-* [Add mapping into server for POST /publications](https://wuilder.com/jira/browse/PDS20_2B-30)
-* [Add maping into POST /users/self/publications](https://wuilder.com/jira/browse/PDS20_2B-52)
+* [Create an Add Photo interface](https://wuilder.com/jira/browse/PDS20_2B-29) -> 21 SP
+* [Add mapping into server for POST /publications](https://wuilder.com/jira/browse/PDS20_2B-30) -> 34 SP
+* [Add maping into POST /users/self/publications](https://wuilder.com/jira/browse/PDS20_2B-52) -> 21 SP
+* [Add publication with an url](https://wuilder.com/jira/browse/PDS20_2B-56) -> 8 SP
+TOTAL: 84 SP
 
 
 ## Maria Sunyer i Rigau
