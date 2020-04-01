@@ -18,11 +18,11 @@
 *
 
 ## Roger Canet Roca
-* [Create register interface](https://wuilder.com/jira/browse/PDS20_2B-15)
-* [Add mapping into server for POST /users/register](https://wuilder.com/jira/browse/PDS20_2B-16)
-* [Create Register functionality in aplication](https://wuilder.com/jira/browse/PDS20_2B-53)
-* [Link register in Login page](https://wuilder.com/jira/browse/PDS20_2B-54)
-* [Set user registered as active user](https://wuilder.com/jira/browse/PDS20_2B-55)
+* [Create register interface](https://wuilder.com/jira/browse/PDS20_2B-15) -> 21 SP
+* [Add mapping into server for POST /users/register](https://wuilder.com/jira/browse/PDS20_2B-16) -> 13 SP
+* [Create Register functionality in aplication](https://wuilder.com/jira/browse/PDS20_2B-53) -> 34 SP
+* [Link register in Login page](https://wuilder.com/jira/browse/PDS20_2B-54) -> 5 SP
+* [Set user registered as active user](https://wuilder.com/jira/browse/PDS20_2B-55) -> 8 SP
 
 ## Sergi Magret Goy
 * [Add mapping into server for GET /users/{id}](https://wuilder.com/jira/secure/RapidBoard.jspa?rapidView=28&projectKey=PDS20_2B&view=detail&selectedIssue=PDS20_2B-40)
