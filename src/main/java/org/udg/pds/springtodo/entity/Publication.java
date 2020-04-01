@@ -6,16 +6,18 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.udg.pds.springtodo.serializer.JsonDateDeserializer;
 import org.udg.pds.springtodo.serializer.JsonDateSerializer;
-import org.udg.pds.springtodo.serializer.JsonTagSerializer;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+
 
 @Entity(name = "publications")
 // This tells JAXB that it has to ignore getters and setters and only use fields for JSON marshaling/unmarshaling
 public class Publication implements Serializable {
+    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     /**
      * Default value included to remove warning. Remove or modify at will.
      **/

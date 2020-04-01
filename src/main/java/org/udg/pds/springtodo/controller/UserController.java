@@ -155,11 +155,11 @@ public class UserController extends BaseController {
 
 
     static class LoginUser {
-    @NotNull
-    public String username;
-    @NotNull
-    public String password;
-  }
+        @NotNull
+        public String username;
+        @NotNull
+        public String password;
+    }
 
   static class RegisterUser {
     @NotNull

@@ -10,10 +10,13 @@ import org.udg.pds.springtodo.repository.PublicationRepository;
 
 
 import java.util.Collection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
 public class PublicationService {
+    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     @Autowired
     PublicationRepository publicationRepository;
 
@@ -34,7 +37,7 @@ public class PublicationService {
         return ou.get().getPublications();
     }
 
-    public IdObject addPublication(Publication p) {
+    public IdObject addPublication (Publication p) {
         publicationRepository.save(p);
         return new IdObject(p.getId());
     }
