@@ -6,10 +6,10 @@
 
 
 ## Maria Sunyer i Rigau
-* [Add mapping into server for GET /users](https://wuilder.com/jira/browse/PDS20_2B-31)
-* [Create Search interface and list all users](https://wuilder.com/jira/browse/PDS20_2B-36)
-* [Order mapping by alphabetical order](https://wuilder.com/jira/browse/PDS20_2B-36)
-* [Search users in the recycle view](https://wuilder.com/jira/browse/PDS20_2B-39)
+* [Add mapping into server for GET /users](https://wuilder.com/jira/browse/PDS20_2B-31) -> 21
+* [Create Search interface and list all users](https://wuilder.com/jira/browse/PDS20_2B-36) -> 34
+* [Order mapping by alphabetical order](https://wuilder.com/jira/browse/PDS20_2B-36) -> 8
+* [Search users in the recycle view](https://wuilder.com/jira/browse/PDS20_2B-39) -> 34
 
 ## Oliu Llorente Moragrega
 * [Add mapping into server for GET/publications](https://wuilder.com/jira/browse/PDS20_2B-32) -> 21 SP
