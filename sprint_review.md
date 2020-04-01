@@ -18,6 +18,8 @@
 * [Making the scroll option](https://wuilder.com/jira/browse/PDS20_2B-38) -> 21 SP
 * [Get the owner's username from a publication](https://wuilder.com/jira/browse/PDS20_2B-48) -> 2 SP
 
+TOTAL: 91 SP
+
 ## Pau Casademont i Colomer
 * [Create Sing In interface](https://wuilder.com/jira/browse/PDS20_2B-17) -> 21 SP 
 * [Add mapping into server for POST /users/login](https://wuilder.com/jira/browse/PDS20_2B-18) -> 0 SP
@@ -25,6 +27,8 @@
 * [Modify retrofit API to request log out](https://wuilder.com/jira/browse/PDS20_2B-20) -> 21 SP 
 * [Create AlertDialog in userProfile with logout_layout](https://wuilder.com/jira/browse/PDS20_2B-49) -> 21 SP
 * [Only show log out button when It's the private profile](https://wuilder.com/jira/browse/PDS20_2B-51) -> 8 SP
+
+TOTAL: 84 SP
 
 
 ## Roger Canet Roca
@@ -34,12 +38,16 @@
 * [Link register in Login page](https://wuilder.com/jira/browse/PDS20_2B-54) -> 5 SP
 * [Set user registered as active user](https://wuilder.com/jira/browse/PDS20_2B-55) -> 8 SP
 
+TOTAL: 81 SP
+
 ## Sergi Magret Goy
-* [Add mapping into server for GET /users/{id}](https://wuilder.com/jira/secure/RapidBoard.jspa?rapidView=28&projectKey=PDS20_2B&view=detail&selectedIssue=PDS20_2B-40)
-* [Add mapping into server for GET /users/self/publications](https://wuilder.com/jira/secure/RapidBoard.jspa?rapidView=28&projectKey=PDS20_2B&view=detail&selectedIssue=PDS20_2B-41)
-* [Create in Postman and add mapping into server for /users/self](https://wuilder.com/jira/secure/RapidBoard.jspa?rapidView=28&projectKey=PDS20_2B&view=detail&selectedIssue=PDS20_2B-44)
-* [Add mapping into server for GET /users/{id}/publications](https://wuilder.com/jira/secure/RapidBoard.jspa?rapidView=28&projectKey=PDS20_2B&view=detail&selectedIssue=PDS20_2B-46)
-* [Create Profile interface](https://wuilder.com/jira/secure/RapidBoard.jspa?rapidView=28&projectKey=PDS20_2B&view=detail&selectedIssue=PDS20_2B-37)
-* [Modify the Retrofit API on the frontend side](https://wuilder.com/jira/secure/RapidBoard.jspa?rapidView=28&projectKey=PDS20_2B&view=detail&selectedIssue=PDS20_2B-42)
-* [Make profile interface relative to the screen size](https://wuilder.com/jira/secure/RapidBoard.jspa?rapidView=28&projectKey=PDS20_2B&view=detail&selectedIssue=PDS20_2B-50)
-* [Add name, description and profile picture information into User](https://wuilder.com/jira/secure/RapidBoard.jspa?rapidView=28&projectKey=PDS20_2B&view=detail&selectedIssue=PDS20_2B-47)
+* [Create Profile interface](https://wuilder.com/jira/browse/PDS20_2B-37) -> 34 SP
+* [Add mapping into server for GET /users/{id}](https://wuilder.com/jira/browse/PDS20_2B-40) -> 13 SP
+* [Add mapping into server for GET /users/self/publications](https://wuilder.com/jira/browse/PDS20_2B-41) -> 21 SP
+* [Modify the Retrofit API on the frontend side](https://wuilder.com/jira/browse/PDS20_2B-42) -> 5 SP
+* [Create in Postman and add mapping into server for /users/self](https://wuilder.com/jira/browse/PDS20_2B-44) -> 8 SP
+* [Add mapping into server for GET /users/{id}/publications](https://wuilder.com/jira/browse/PDS20_2B-46) -> 8 SP
+* [Add name, description and profile picture information into User](https://wuilder.com/jira/browse/PDS20_2B-47) -> 13 SP
+* [Make profile interface relative to the screen size](https://wuilder.com/jira/browse/PDS20_2B-50) -> 13 SP
+
+TOTAL: 115 SP
