@@ -4,6 +4,7 @@
 * [Add mapping into server for POST /publications](https://wuilder.com/jira/browse/PDS20_2B-30) -> 34 SP
 * [Add maping into POST /users/self/publications](https://wuilder.com/jira/browse/PDS20_2B-52) -> 21 SP
 * [Add publication with an url](https://wuilder.com/jira/browse/PDS20_2B-56) -> 8 SP
+
 TOTAL: 84 SP
 
 
