@@ -3,7 +3,10 @@
 * 
 
 ## Maria Sunyer i Rigau
-* 
+* [Add mapping into server for GET /users](https://wuilder.com/jira/browse/PDS20_2B-31)
+* [Create Search interface and list all users](https://wuilder.com/jira/browse/PDS20_2B-36)
+* [Order mapping by alphabetical order](https://wuilder.com/jira/browse/PDS20_2B-36)
+* [Search users in the recycle view](https://wuilder.com/jira/browse/PDS20_2B-39)
 
 ## Oliu Llorente Moragrega
 * 
