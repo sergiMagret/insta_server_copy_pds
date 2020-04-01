@@ -12,7 +12,11 @@
 * [Search users in the recycle view](https://wuilder.com/jira/browse/PDS20_2B-39)
 
 ## Oliu Llorente Moragrega
-* 
+* [Add mapping into server for GET/publications](https://wuilder.com/jira/browse/PDS20_2B-32) -> 21 SP
+* [Create the toolbar on the timeline interface](https://wuilder.com/jira/browse/PDS20_2B-33) -> 13 SP
+* [Show all the publications from all the users](https://wuilder.com/jira/browse/PDS20_2B-35) -> 34 SP
+* [Making the scroll option](https://wuilder.com/jira/browse/PDS20_2B-38) -> 21 SP
+* [Get the owner's username from a publication](https://wuilder.com/jira/browse/PDS20_2B-48) -> 2 SP
 
 ## Pau Casademont i Colomer
 *
