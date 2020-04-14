@@ -85,7 +85,7 @@ public class Publication implements Serializable {
         return description;
     }
 
-    @JsonView(Views.Complete.class)
+    @JsonView(Views.Public.class)
     public long getUserId() {
         return userId;
     }
