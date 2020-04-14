@@ -9,8 +9,7 @@ import org.udg.pds.springtodo.serializer.JsonDateSerializer;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Calendar;
+import java.util.*;
 import java.text.SimpleDateFormat;
 
 
@@ -44,6 +43,9 @@ public class Publication implements Serializable {
     private String description;
 
     private Date date;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<User> likes = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_user")
@@ -83,6 +85,25 @@ public class Publication implements Serializable {
     @JsonView(Views.Public.class)
     public String getDescription() {
         return description;
+    }
+
+    @JsonView(Views.Public.class)
+    public int getLikes() {
+        return likes.size();
+    }
+
+    @JsonView(Views.Public.class)
+    public void addLike(User u) {
+        this.likes.add(u);
+    }
+
+    @JsonView(Views.Public.class)
+    public boolean hasLiked(User u){
+        boolean trobat = false;
+        if (likes.contains(u)){
+            trobat = true;
+        }
+        return trobat;
     }
 
     @JsonView(Views.Complete.class)
