@@ -106,7 +106,7 @@ public class Publication implements Serializable {
         return trobat;
     }
 
-    @JsonView(Views.Complete.class)
+    @JsonView(Views.Public.class)
     public long getUserId() {
         return userId;
     }
