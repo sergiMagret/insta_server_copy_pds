@@ -20,6 +20,8 @@ public class PublicationService {
     @Autowired
     PublicationRepository publicationRepository;
 
+   @Autowired
+    PublicationService publicationService;
     @Autowired
     UserService userService;
 
@@ -41,4 +43,20 @@ public class PublicationService {
         publicationRepository.save(p);
         return new IdObject(p.getId());
     }
+
+    public Publication addLike (Long userId, Long publicationId){
+        Optional<User> ou = userService.crud().findById(userId);
+        if(!ou.isPresent()) throw new ServiceException("User does not exist!");
+
+        Optional<Publication> pb = publicationService.crud().findById(publicationId);
+        if(!pb.isPresent()){
+            throw new ServiceException("Publication does not exist!");
+        }
+        if(! pb.get().hasLiked(ou.get())){
+            pb.get().addLike(ou.get());
+       }
+        this.publicationRepository.save(pb.get());
+        return pb.get();
+    }
+
 }

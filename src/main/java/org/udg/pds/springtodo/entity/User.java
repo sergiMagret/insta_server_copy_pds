@@ -67,6 +67,10 @@ public class User implements Serializable {
     @ManyToMany(mappedBy = "members", cascade = CascadeType.ALL)
     private Set<Group> memberGroups = new HashSet<>();
 
+   //I use a set to avoid dupliccates as a user can't like a photo more tha once
+    @ManyToMany(mappedBy = "likes", cascade = CascadeType.ALL)
+    private Set<Publication> liked = new HashSet<>();
+
     @JsonView(Views.Private.class)
     public Long getId() {
         return id;
