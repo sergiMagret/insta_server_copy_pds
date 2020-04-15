@@ -49,7 +49,7 @@ public class PublicationController  extends BaseController{
          return op.get();
     }
 
-    @GetMapping(path="/{id}/nlikes")
+    @GetMapping(path="/{id}/likes")
     public int getLikes(HttpSession session, @PathVariable("id") Long publicationId) {
         getLoggedUser(session);
 
