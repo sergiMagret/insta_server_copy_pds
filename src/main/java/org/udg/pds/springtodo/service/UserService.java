@@ -71,7 +71,7 @@ public class UserService {
     return u;
   }
 
-    public void addFollower(Long userId, Long followerId) {
+    /*public void addFollower(Long userId, Long followerId) {
         Optional<User> ou = userRepository.findById(userId);
         Optional<User> of = userRepository.findById(followerId);
         if(!ou.isPresent()){
@@ -82,7 +82,7 @@ public class UserService {
         }
         ou.get().addFollower(of.get()); // Add the user
         userRepository.save(ou.get()); // Update the DB
-    }
+    }*/
 
     public void addFollowed(Long userId, Long followedId) {
         Optional<User> ou = userRepository.findById(userId);
@@ -92,6 +92,9 @@ public class UserService {
         }
         if(!of.isPresent()) {
             throwUserDoesNotExist(followedId);
+        }
+        if(userId.equals(followedId)) {
+            throw new ServiceException("You can't follow yoursef!");
         }
         ou.get().addFollowed(of.get()); // Add user
         userRepository.save(ou.get()); // Update the DB

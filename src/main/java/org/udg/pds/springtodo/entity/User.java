@@ -57,7 +57,6 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Publication> publications;
-    /** Pot ser s'hauria de fer servir el @JoinColumn per no tenir les publicacions sino els seus IDs?? **/
 
     // Use Set<> to avoid duplicates. A group cannot be owned more than once
     @OneToMany(mappedBy = "owner")
@@ -68,17 +67,16 @@ public class User implements Serializable {
     private Set<Group> memberGroups = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "followed")
-    //@JoinColumn(name="followers_id")
-    private Set<User> followers = new HashSet<>();
+    private Set<User> followers = new HashSet<>(); // Using a Set because a user can't be followed more than once by the same user
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<User> followed = new HashSet<>();
+    private Set<User> followed = new HashSet<>(); // Using a Set because a user can't follow more than once the same user
 
    //I use a set to avoid dupliccates as a user can't like a photo more tha once
     @ManyToMany(mappedBy = "likes", cascade = CascadeType.ALL)
     private Set<Publication> liked = new HashSet<>();
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.Public.class)
     public Long getId() {
         return id;
     }
