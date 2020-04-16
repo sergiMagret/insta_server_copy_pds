@@ -1,7 +1,6 @@
 package org.udg.pds.springtodo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.ser.Serializers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +49,23 @@ public class PublicationController  extends BaseController{
         return op.get();
     }
 
+    @GetMapping(path="/{id}/likes")
+    public int getLikes(HttpSession session, @PathVariable("id") Long publicationId) {
+        getLoggedUser(session);
+
+        Optional<Publication> op = publicationService.crud().findById(publicationId);
+        if(!op.isPresent()){
+            throw new ServiceException("Publication does not exist!");
+        }
+        return op.get().getLikes();
+    }
+
+    @PostMapping(path="/{id}/like")
+    public Publication addLike(HttpSession session, @PathVariable("id") Long publicationId){
+        Long userId = this.getLoggedUser(session);
+        Publication pb = publicationService.addLike(userId, publicationId);
+        return pb;
+    }
 
     @PostMapping (consumes = "application/json")
     @JsonView(Views.Private.class)
@@ -60,7 +76,6 @@ public class PublicationController  extends BaseController{
         p.setUser(u);
         u.addPublication(p);
         publicationService.addPublication(p);
-
         return BaseController.OK_MESSAGE;
     }
 
