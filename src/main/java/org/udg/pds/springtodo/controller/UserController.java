@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
+import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.service.GroupService;
 import org.udg.pds.springtodo.service.PublicationService;
 import org.udg.pds.springtodo.service.UserService;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.text.View;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Calendar;
@@ -91,6 +93,44 @@ public class UserController extends BaseController {
     public Collection<Publication> getUserPublicationsPrivate(HttpSession session) {
         Long userId = getLoggedUser(session);
         return publicationService.getUserPublications(userId);
+    }
+
+    @GetMapping(path="/{id}/followed")
+    @JsonView(Views.Public.class)
+    public Collection<User> getFollowedById(HttpSession session, @PathVariable("id") Long userId){
+        getLoggedUser(session);
+        return userService.getFollowed(userId);
+    }
+
+    @GetMapping(path="/{id}/followers")
+    @JsonView(Views.Public.class)
+    public Collection<User> getFollowersById(HttpSession session, @PathVariable("id") Long userId){
+        getLoggedUser(session);
+        return userService.getFollowers(userId);
+    }
+
+    @GetMapping(path="/self/followed")
+    @JsonView(Views.Private.class)
+    public Collection<User> getFollowed(HttpSession session){
+        Long userId = getLoggedUser(session);
+        return userService.getFollowed(userId);
+    }
+
+    @GetMapping(path="/self/followers")
+    @JsonView(Views.Private.class)
+    public Collection<User> getFollowers(HttpSession session){
+        Long userId = getLoggedUser(session);
+        return userService.getFollowers(userId);
+    }
+
+    @PostMapping(path="/self/followed")
+    public String addFollowed(HttpSession session, @Valid @RequestBody NewFollow follow){
+        Long userId = getLoggedUser(session);
+        User u = userService.getUser(userId); // It's not necessary to acces to de id but done to ensure the user exists.
+        User f = userService.getUser(follow.user); // It's not necessary to acces to de id but done to ensure the user exists.
+        userService.addFollowed(u.getId(), f.getId());
+
+        return BaseController.OK_MESSAGE;
     }
 
     @DeleteMapping(path="/{id}")
@@ -184,5 +224,9 @@ public class UserController extends BaseController {
       this.id = id;
     }
   }
+
+    static class NewFollow{
+        public Long user;
+    }
 
 }
