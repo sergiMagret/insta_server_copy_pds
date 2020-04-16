@@ -79,6 +79,13 @@ public class PublicationController  extends BaseController{
         return BaseController.OK_MESSAGE;
     }
 
+    @DeleteMapping(path="/{id}")
+    public String deletePublication(HttpSession session, @PathVariable("id") Long publicationId) {
+
+        publicationService.crud().deleteById(publicationId);
+        return BaseController.OK_MESSAGE;
+    }
+
     static class PublicationPost {
         @NotNull
         public String photo;
