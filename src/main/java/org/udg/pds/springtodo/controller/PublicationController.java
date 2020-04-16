@@ -40,13 +40,13 @@ public class PublicationController  extends BaseController{
 
     @GetMapping(path="/{id}")
     public Publication getPublication(HttpSession session, @PathVariable("id") Long publicationId) {
-         getLoggedUser(session);
+        getLoggedUser(session);
 
-         Optional<Publication> op = publicationService.crud().findById(publicationId);
-         if(!op.isPresent()){
-             throw new ServiceException("Publication does not exist!");
-         }
-         return op.get();
+        Optional<Publication> op = publicationService.crud().findById(publicationId);
+        if(!op.isPresent()){
+            throw new ServiceException("Publication does not exist!");
+        }
+        return op.get();
     }
 
     @GetMapping(path="/{id}/likes")
@@ -69,14 +69,14 @@ public class PublicationController  extends BaseController{
 
     @PostMapping (consumes = "application/json")
     @JsonView(Views.Private.class)
-    public Publication postPublication (HttpSession session,@Valid @RequestBody PublicationPost pub){
+    public String postPublication (HttpSession session,@Valid @RequestBody PublicationPost pub){
         Publication p = new Publication(pub.photo, pub.description, pub.date);
         Long loggedUserId = getLoggedUser(session);
         User u = userService.getUserProfile(loggedUserId);
         p.setUser(u);
         u.addPublication(p);
         publicationService.addPublication(p);
-        return p;
+        return BaseController.OK_MESSAGE;
     }
 
     static class PublicationPost {

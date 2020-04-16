@@ -20,7 +20,7 @@ public class PublicationService {
     @Autowired
     PublicationRepository publicationRepository;
 
-   @Autowired
+    @Autowired
     PublicationService publicationService;
     @Autowired
     UserService userService;
@@ -54,7 +54,7 @@ public class PublicationService {
         }
         if(! pb.get().hasLiked(ou.get())){
             pb.get().addLike(ou.get());
-       }
+        }
         this.publicationRepository.save(pb.get());
         return pb.get();
     }
