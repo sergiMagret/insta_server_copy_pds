@@ -47,10 +47,10 @@ public class UserController extends BaseController {
     @GetMapping
     @JsonView(Views.Private.class)
     public Collection<User> listAllTasks(HttpSession session,
-                                         @RequestParam(value = "from", required = false) Date from) {
+                                         @RequestParam String text, @RequestParam Integer page, @RequestParam Integer size){
         Long userId = getLoggedUser(session);
 
-        return userService.getUsers();
+        return userService.getUsers(text, page, size);
     }
 
   @PostMapping(path="/logout")
@@ -215,6 +215,7 @@ public class UserController extends BaseController {
     @NotNull
       public String profilePicture;
   }
+
 
   static class ID {
     public Long id;
