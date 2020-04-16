@@ -1,13 +1,10 @@
 package org.udg.pds.springtodo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Component;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
-import org.udg.pds.springtodo.entity.Publication;
 import org.udg.pds.springtodo.entity.Task;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.repository.UserRepository;
@@ -71,7 +68,9 @@ public class UserService {
     return u;
   }
 
-  public Collection<User> getUsers(){
-    return userRepository.getAll();
+  public Collection<User> getUsers(String text, Integer page, Integer size){
+      Pageable p=PageRequest.of(page,size);
+      String filter = "%"+text+"%";
+      return userRepository.getFiltered(filter,p);
   }
 }
