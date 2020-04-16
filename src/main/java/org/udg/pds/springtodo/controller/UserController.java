@@ -66,9 +66,12 @@ public class UserController extends BaseController {
     /** For the public view, when a user requests to see another user's basic information. **/
     @GetMapping(path="/{id}")
     @JsonView(Views.Public.class)
-    public User getPublicUser(HttpSession session, @PathVariable("id") Long userId) {
-        getLoggedUser(session);
-        return userService.getUser(userId);
+    public User getPublicUser(HttpSession session, @PathVariable("id") Long requestedUserId) {
+        Long loggedUserId = getLoggedUser(session);
+        User loggedUser = userService.getUser(loggedUserId);
+        User requestedUser = userService.getUser(requestedUserId);
+        requestedUser.isFollowedBy(loggedUser);
+        return requestedUser;
     }
 
     /** For the user who wants to see another user's publications. **/
@@ -124,10 +127,10 @@ public class UserController extends BaseController {
     }
 
     @PostMapping(path="/self/followed")
-    public String addFollowed(HttpSession session, @Valid @RequestBody NewFollow follow){
+    public String addFollowed(HttpSession session, @Valid @RequestBody Long followedId){
         Long userId = getLoggedUser(session);
         User u = userService.getUser(userId); // It's not necessary to acces to de id but done to ensure the user exists.
-        User f = userService.getUser(follow.user); // It's not necessary to acces to de id but done to ensure the user exists.
+        User f = userService.getUser(followedId); // It's not necessary to acces to de id but done to ensure the user exists.
         userService.addFollowed(u.getId(), f.getId());
 
         return BaseController.OK_MESSAGE;
@@ -224,9 +227,5 @@ public class UserController extends BaseController {
       this.id = id;
     }
   }
-
-    static class NewFollow{
-        public Long user;
-    }
 
 }
