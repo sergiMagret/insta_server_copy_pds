@@ -118,7 +118,86 @@ public class Global {
 
         profPic = "https://www.dailymoss.com/wp-content/uploads/2019/08/funny-profile-pic59.jpg";
         desc = "Hi! I'm another user and this is my description.\nI like things like music :)";
-        user = userService.register("user", "User By Default", "user@hotmail.com", "0000", desc, profPic);
+        user = userService.register("user2", "User By Default", "user2@hotmail.com", "0000", desc, profPic);
+
+        profPic = "https://www.dailymoss.com/wp-content/uploads/2019/08/funny-profile-pic59.jpg";
+        desc = "Hi! I'm another user and this is my description.\nI like things like music :)";
+        user = userService.register("Maria", "User By Default", "Maria@hotmail.com", "0000", desc, profPic);
+
+        profPic = "https://www.dailymoss.com/wp-content/uploads/2019/08/funny-profile-pic59.jpg";
+        desc = "Hi! I'm another user and this is my description.\nI like things like music :)";
+        user = userService.register("Oliu", "User By Default", "Oliu@hotmail.com", "0000", desc, profPic);
+
+        profPic = "https://www.dailymoss.com/wp-content/uploads/2019/08/funny-profile-pic59.jpg";
+        desc = "Hi! I'm another user and this is my description.\nI like things like music :)";
+        user = userService.register("Pau", "User By Default", "pau@hotmail.com", "0000", desc, profPic);
+
+        profPic = "https://www.dailymoss.com/wp-content/uploads/2019/08/funny-profile-pic59.jpg";
+        desc = "Hi! I'm another user and this is my description.\nI like things like music :)";
+        user = userService.register("Sergi", "User By Default", "sergi@hotmail.com", "0000", desc, profPic);
+
+        profPic = "https://www.dailymoss.com/wp-content/uploads/2019/08/funny-profile-pic59.jpg";
+        desc = "Hi! I'm another user and this is my description.\nI like things like music :)";
+        user = userService.register("Roger", "User By Default", "roger@hotmail.com", "0000", desc, profPic);
+
+        profPic = "https://www.dailymoss.com/wp-content/uploads/2019/08/funny-profile-pic59.jpg";
+        desc = "Hi! I'm another user and this is my description.\nI like things like music :)";
+        userService.register("Ainhoa", "User By Default", "ainhoa@hotmail.com", "0000", desc, profPic);
+        userService.register("Marc", "User By Default", "marc@hotmail.com", "0000", desc, profPic);
+        userService.register("julia", "User By Default", "julia@hotmail.com", "0000", desc, profPic);
+        userService.register("nil", "User By Default", "nil@hotmail.com", "0000", desc, profPic);
+        userService.register("lucia", "User By Default", "lucia@hotmail.com", "0000", desc, profPic);
+        userService.register("marti", "User By Default", "marti@hotmail.com", "0000", desc, profPic);
+        userService.register("arnau", "arnau", "arnau@hotmail.com", "0000", desc, profPic);
+        userService.register("paula", "paula", "paula@hotmail.com", "0000", desc, profPic);
+        userService.register("Abril", "Abril", "abril@hotmail.com", "0000", desc, profPic);
+        userService.register("Hugo", "Hugo", "hugo@hotmail.com", "0000", desc, profPic);
+        userService.register("Biel", "Biel", "biel@hotmail.com", "0000", desc, profPic);
+
+        userService.register("2Marc", "User By Default", "mar2c@hotmail.com", "0000", desc, profPic);
+        userService.register("2julia", "User By Default", "jul2ia@hotmail.com", "0000", desc, profPic);
+        userService.register("2nil", "User By Default", "nil@ho2tmail.com", "0000", desc, profPic);
+        userService.register("2lucia", "User By Default", "lucia2@hotmail.com", "0000", desc, profPic);
+        userService.register("2marti", "User By Default", "marti@2hotmail.com", "0000", desc, profPic);
+        userService.register("2arnau", "arnau", "arnau@hotmail.com2", "0000", desc, profPic);
+        userService.register("2paula", "paula", "paula@hotm2ail.com", "0000", desc, profPic);
+        userService.register("2Abril", "Abril", "abril@hotma2il.com", "0000", desc, profPic);
+        userService.register("2Hugo", "Hugo", "hugo@hotmail.c2om", "0000", desc, profPic);
+        userService.register("2Biel", "Biel", "biel@hotmail.co2m", "0000", desc, profPic);
+
+        userService.register("3Marc", "User By Default", "3marc@hotmail.com", "0000", desc, profPic);
+        userService.register("3julia", "User By Default", "3julia@hotmail.com", "0000", desc, profPic);
+        userService.register("3nil", "User By Default", "3nil@hotmail.com", "0000", desc, profPic);
+        userService.register("3lucia", "User By Default", "3lucia@hotmail.com", "0000", desc, profPic);
+        userService.register("3marti", "User By Default", "3marti@hotmail.com", "0000", desc, profPic);
+        userService.register("3arnau", "arnau", "3arnau@hotmail.com", "0000", desc, profPic);
+        userService.register("3paula", "paula", "3paula@hotmail.com", "0000", desc, profPic);
+        userService.register("3Abril", "Abril", "3abril@hotmail.com", "0000", desc, profPic);
+        userService.register("3Hugo", "Hugo", "3hugo@hotmail.com", "0000", desc, profPic);
+        userService.register("3Biel", "Biel", "3biel@hotmail.com", "0000", desc, profPic);
+
+        userService.register("4Marc", "User By Default", "4marc@hotmail.com", "0000", desc, profPic);
+        userService.register("4julia", "User By Default", "4julia@hotmail.com", "0000", desc, profPic);
+        userService.register("4nil", "User By Default", "4nil@hotmail.com", "0000", desc, profPic);
+        userService.register("4lucia", "User By Default", "4lucia@hotmail.com", "0000", desc, profPic);
+        userService.register("4marti", "User By Default", "4marti@hotmail.com", "0000", desc, profPic);
+        userService.register("4arnau", "arnau", "4arnau@hotmail.com", "0000", desc, profPic);
+        userService.register("4paula", "paula", "4paula@hotmail.com", "0000", desc, profPic);
+        userService.register("4Abril", "Abril", "4abril@hotmail.com", "0000", desc, profPic);
+        userService.register("4Hugo", "Hugo", "4hugo@hotmail.com", "0000", desc, profPic);
+        userService.register("4Biel", "Biel", "4biel@hotmail.com", "0000", desc, profPic);
+
+        userService.register("5Marc", "User By Default", "5marc@hotmail.com", "0000", desc, profPic);
+        userService.register("5julia", "User By Default", "5julia@hotmail.com", "0000", desc, profPic);
+        userService.register("5nil", "User By Default", "5nil@hotmail.com", "0000", desc, profPic);
+        userService.register("5lucia", "User By Default", "5lucia@hotmail.com", "0000", desc, profPic);
+        userService.register("5marti", "User By Default", "5marti@hotmail.com", "0000", desc, profPic);
+        userService.register("5arnau", "arnau", "5arnau@hotmail.com", "0000", desc, profPic);
+        userService.register("5paula", "paula", "5paula@hotmail.com", "0000", desc, profPic);
+        userService.register("5Abril", "Abril", "5abril@hotmail.com", "0000", desc, profPic);
+        userService.register("5Hugo", "Hugo", "5hugo@hotmail.com", "0000", desc, profPic);
+        userService.register("5Biel", "Biel", "5biel@hotmail.com", "0000", desc, profPic);
+
 
         /* Adding two publications associated with the user with id=2. */
         publicationURL = "https://petapixel.com/assets/uploads/2019/06/manipulatedelephant-800x534.jpg";
