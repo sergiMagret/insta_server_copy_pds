@@ -193,6 +193,10 @@ public class User implements Serializable {
         this.followed.add(u);
     }
 
+    public void deleteFollowed(User u){
+        this.followed.remove(u);
+    }
+
     public void addTask(Task task) {
         tasks.add(task);
     }
