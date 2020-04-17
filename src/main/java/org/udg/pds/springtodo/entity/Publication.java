@@ -51,6 +51,9 @@ public class Publication implements Serializable {
     @JoinColumn(name = "fk_user")
     private User user;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "publication")
+    private Collection<Comment> comments;
+
     @Column(name = "fk_user", insertable = false, updatable = false)
     private Long userId;
 
@@ -91,6 +94,9 @@ public class Publication implements Serializable {
     public int getLikes() {
         return likes.size();
     }
+
+    @JsonIgnore
+    public Collection<Comment> getComments(){ return comments;}
 
     @JsonView(Views.Public.class)
     public void addLike(User u) {
