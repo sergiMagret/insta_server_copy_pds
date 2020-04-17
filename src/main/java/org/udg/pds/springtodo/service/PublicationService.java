@@ -59,4 +59,17 @@ public class PublicationService {
         return pb.get();
     }
 
+    public Publication deleteLike (Long userId, Long publicationId){
+        Optional<User> ou = userService.crud().findById(userId);
+        if(!ou.isPresent()) throw new ServiceException("User does not exist!");
+
+        Optional<Publication> pb = publicationService.crud().findById(publicationId);
+        if(!pb.isPresent()){
+            throw new ServiceException("Publication does not exist!");
+        }
+        pb.get().delLikes(ou.get());
+        this.publicationRepository.save(pb.get());
+        return pb.get();
+    }
+
 }
