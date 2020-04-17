@@ -6,14 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.udg.pds.springtodo.entity.IdObject;
-import org.udg.pds.springtodo.entity.Publication;
-import org.udg.pds.springtodo.entity.Tag;
-import org.udg.pds.springtodo.entity.User;
-import org.udg.pds.springtodo.service.PublicationService;
-import org.udg.pds.springtodo.service.TagService;
-import org.udg.pds.springtodo.service.TaskService;
-import org.udg.pds.springtodo.service.UserService;
+import org.udg.pds.springtodo.entity.*;
+import org.udg.pds.springtodo.service.*;
 
 import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
@@ -44,6 +38,10 @@ public class Global {
     @Autowired
     private
     PublicationService publicationService;
+
+    @Autowired
+    private
+    CommentService commentService;
 
     @Value("${todospring.minio.url:}")
     private String minioURL;
@@ -109,6 +107,11 @@ public class Global {
         p.setUser(user);
         user.addPublication(p);
         publicationService.addPublication(p);
+
+        Comment c = new Comment("hola");
+        c.setUser(user);
+        c.setPublication(p);
+        commentService.addComment(c);
 
         IdObject taskId = taskService.addTask("Una tasca", user.getId(), new Date(), new Date());
         Tag tag = tagService.addTag("ATag", "Just a tag");
