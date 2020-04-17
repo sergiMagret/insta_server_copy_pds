@@ -104,6 +104,11 @@ public class Publication implements Serializable {
     }
 
     @JsonView(Views.Public.class)
+    public void delLikes(User u) {
+        this.likes.remove(u);
+    }
+
+    @JsonView(Views.Public.class)
     public boolean hasLiked(User u){
         boolean trobat = false;
         if (likes.contains(u)){
