@@ -58,6 +58,9 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Publication> publications;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<Comment> Comments;
+
     // Use Set<> to avoid duplicates. A group cannot be owned more than once
     @OneToMany(mappedBy = "owner")
     private Set<Group> ownedGroups = new HashSet<>();

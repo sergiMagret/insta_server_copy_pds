@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.*;
+import org.udg.pds.springtodo.service.CommentService;
 import org.udg.pds.springtodo.service.GroupService;
 import org.udg.pds.springtodo.service.PublicationService;
 import org.udg.pds.springtodo.service.UserService;
@@ -28,6 +29,8 @@ public class PublicationController  extends BaseController{
     PublicationService publicationService;
     @Autowired
     UserService userService;
+    @Autowired
+    CommentService commentService;
 
     @GetMapping
     @JsonView(Views.Public.class)
@@ -58,6 +61,17 @@ public class PublicationController  extends BaseController{
             throw new ServiceException("Publication does not exist!");
         }
         return op.get().getLikes();
+    }
+
+    @GetMapping(path="/{id}/comments")
+    public Collection<Comment> getComments(HttpSession session, @PathVariable("id") Long publicationId, @RequestParam Integer page, @RequestParam Integer size) {
+        getLoggedUser(session);
+
+        Optional<Publication> op = publicationService.crud().findById(publicationId);
+        if(!op.isPresent()){
+            throw new ServiceException("Publication does not exist!");
+        }
+        return commentService.getComments(publicationId,page,size);
     }
 
     @PostMapping(path="/{id}/like")
