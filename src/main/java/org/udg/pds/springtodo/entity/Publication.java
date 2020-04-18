@@ -117,6 +117,8 @@ public class Publication implements Serializable {
         return trobat;
     }
 
+
+
     @JsonView(Views.Public.class)
     public long getUserId() {
         return userId;
