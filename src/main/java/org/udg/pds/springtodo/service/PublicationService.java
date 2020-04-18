@@ -6,6 +6,7 @@ import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.IdObject;
 import org.udg.pds.springtodo.entity.Publication;
 import org.udg.pds.springtodo.entity.User;
+import org.udg.pds.springtodo.entity.Views;
 import org.udg.pds.springtodo.repository.PublicationRepository;
 
 
@@ -42,6 +43,13 @@ public class PublicationService {
     public IdObject addPublication (Publication p) {
         publicationRepository.save(p);
         return new IdObject(p.getId());
+    }
+    public Publication getPublication(Long id) {
+        Optional<Publication> po = publicationRepository.findById(id);
+        if (po.isPresent())
+            return po.get();
+        else
+            throw new ServiceException(String.format("Publication with id = % dos not exists", id));
     }
 
     public Publication addLike (Long userId, Long publicationId){
