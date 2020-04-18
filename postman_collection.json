@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "11e87b8a-cf02-41e1-81bc-c6997b53f4c6",
+		"_postman_id": "a8a0ab1f-e95b-4707-b617-ab767aa7c180",
 		"name": "PDS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -34,7 +34,7 @@
 						}
 					]
 				},
-				"description": "llistar els ususaris"
+				"description": "URI: <b> GET /users </b> <br>\r\nLlistar els ususaris de l'aplicació"
 			},
 			"response": []
 		},
@@ -699,7 +699,8 @@
 							"value": "20"
 						}
 					]
-				}
+				},
+				"description": "URI: <b> GET /publications/{id}/comments </b> <br>\r\nPer llistar els commentaris de la publicació amb identificador \"id\""
 			},
 			"response": []
 		},
@@ -823,6 +824,43 @@
 			"response": []
 		},
 		{
+			"name": "localhost:8080/users/self/followed",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"26\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/self/followed",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"self",
+						"followed"
+					]
+				},
+				"description": "URI: <b> POST /users/self/followed </b> <br>\nPer afegir un usuari nou a la llista de seguidors de l'usuari amb la sessió iniciada. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> id </li>\n</ul>"
+			},
+			"response": []
+		},
+		{
 			"name": "localhost:8080/users/1/followers",
 			"request": {
 				"method": "GET",
@@ -927,43 +965,6 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/users/self/followed",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"user\":\"1\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/users/self/followed",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"self",
-						"followed"
-					]
-				},
-				"description": "URI: <b> POST /users/self/followed </b> <br>\nPer afegir un usuari nou a la llista de seguidors de l'usuari amb la sessió iniciada. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> user </li>\n</ul>"
-			},
-			"response": []
-		},
-		{
 			"name": "localhost:8080/users/self/followed/1",
 			"request": {
 				"method": "DELETE",
@@ -977,7 +978,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8080/users/self/followed/1",
+					"raw": "localhost:8080/users/self/followed/26",
 					"host": [
 						"localhost"
 					],
@@ -986,7 +987,7 @@
 						"users",
 						"self",
 						"followed",
-						"1"
+						"26"
 					]
 				},
 				"description": "URI: <b> DELETE /users/self/followed/{id} </b> <br>\nPer esborrar l'usuari amb identificador {id} de la llista de seguits de l'usuari amb la sessió iniciada."
