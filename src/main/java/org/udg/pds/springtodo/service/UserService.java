@@ -90,6 +90,22 @@ public class UserService {
         userRepository.save(ou.get()); // Update the DB
     }
 
+    public void deleteFollowed(Long userId, Long followedId){
+        Optional<User> ou = userRepository.findById(userId);
+        Optional<User> of = userRepository.findById(followedId);
+        if(!ou.isPresent()){
+            throwUserDoesNotExist(userId);
+        }
+        if(!of.isPresent()) {
+            throwUserDoesNotExist(followedId);
+        }
+        if(userId.equals(followedId)) {
+            throw new ServiceException("You can't unfollow yoursef!");
+        }
+        ou.get().deleteFollowed(of.get()); // Add user
+        userRepository.save(ou.get()); // Update the DB
+    }
+
     public Collection<User> getFollowers(Long userId){
         Optional<User> ou = userRepository.findById(userId);
         if(!ou.isPresent()){
