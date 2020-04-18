@@ -1,6 +1,7 @@
 package org.udg.pds.springtodo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -74,12 +75,31 @@ public class PublicationController  extends BaseController{
         return commentService.getComments(publicationId,page,size);
     }
 
+    @PostMapping(path="/{id}/comments")
+    @JsonView(Views.Private.class)
+    public String addComment(HttpSession session, @Valid @RequestBody CommentPost comment){
+        Long userId = this.getLoggedUser(session);
+        User u = userService.getUserProfile(userId);
+        Publication p = publicationService.getPublication(comment.publicationId);
+        Date currentDate = new Date();
+        Comment c = new Comment(comment.text);
+        c.setPublication(p);
+        c.setUser(u);
+        c.setDate(currentDate);
+        commentService.addComment(c);
+        return BaseController.OK_MESSAGE;
+    }
+
+
+
     @PostMapping(path="/{id}/like")
     public Publication addLike(HttpSession session, @PathVariable("id") Long publicationId){
         Long userId = this.getLoggedUser(session);
         Publication pb = publicationService.addLike(userId, publicationId);
         return pb;
     }
+
+
 
     @PostMapping (consumes = "application/json")
     @JsonView(Views.Private.class)
@@ -101,6 +121,14 @@ public class PublicationController  extends BaseController{
         @NotNull
         public Date date;
     }
+
+    static class CommentPost{
+        @NotNull
+        public String text;
+        @NotNull
+        public Long publicationId;
+    }
+
 
 
 }

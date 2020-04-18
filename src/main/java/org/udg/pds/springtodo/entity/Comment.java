@@ -77,7 +77,14 @@ public class Comment implements Serializable {
         this.publication = publication;
     }
 
+    @JsonIgnore
+    public Date getDate() {
+        return date;
+    }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
 
 
