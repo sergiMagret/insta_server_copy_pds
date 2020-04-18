@@ -1,6 +1,7 @@
 package org.udg.pds.springtodo.entity;
 
 import com.fasterxml.jackson.annotation.*;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.udg.pds.springtodo.service.PublicationService;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class User implements Serializable {
         this.description = description;
         this.profilePicture = profilePicture;
         this.publications = new ArrayList<>();
+        this.followsUser = false;
     }
 
     @Id
@@ -51,6 +53,12 @@ public class User implements Serializable {
 
     @NotNull
     private String password;
+
+    @NotNull
+    private Boolean followsUser;
+    /* followsUser is modified by the method isFollowedBy(User u), this variable is used to know if the logged user is following the asked user. */
+    /* Let's say you are the logged user A, and you request for the profile of user B, then if you are following B, the value of followsUser will be true */
+    /* because you (A) are following (B). */
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Task> tasks;
@@ -138,6 +146,16 @@ public class User implements Serializable {
     }
 
     @JsonIgnore
+    public void isFollowedBy(User u) {
+        followsUser = followers.contains(u);
+    }
+
+    @JsonView(Views.Public.class)
+    public Boolean getFollowsUser() {
+        return this.followsUser;
+    }
+
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -176,6 +194,10 @@ public class User implements Serializable {
 
     public void addFollowed(User u) {
         this.followed.add(u);
+    }
+
+    public void deleteFollowed(User u){
+        this.followed.remove(u);
     }
 
     public void addTask(Task task) {

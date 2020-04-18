@@ -3,11 +3,9 @@ package org.udg.pds.springtodo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
-import org.udg.pds.springtodo.entity.Comment;
 import org.udg.pds.springtodo.entity.IdObject;
 import org.udg.pds.springtodo.entity.Publication;
 import org.udg.pds.springtodo.entity.User;
-import org.udg.pds.springtodo.repository.CommentRepository;
 import org.udg.pds.springtodo.repository.PublicationRepository;
 
 
@@ -27,21 +25,12 @@ public class PublicationService {
     @Autowired
     UserService userService;
 
-
     public PublicationRepository crud() {
         return publicationRepository;
     }
 
     public Collection<Publication> getPublications() {
         return publicationRepository.getAll();
-    }
-
-    public Publication getPublication(Long id) {
-        Optional<Publication> po = publicationRepository.findById(id);
-        if (po.isPresent())
-            return po.get();
-        else
-            throw new ServiceException(String.format("Publication with id = % dos not exists", id));
     }
 
     public Collection<Publication> getUserPublications(Long userId) {
@@ -70,5 +59,17 @@ public class PublicationService {
         return pb.get();
     }
 
+    public Publication deleteLike (Long userId, Long publicationId){
+        Optional<User> ou = userService.crud().findById(userId);
+        if(!ou.isPresent()) throw new ServiceException("User does not exist!");
+
+        Optional<Publication> pb = publicationService.crud().findById(publicationId);
+        if(!pb.isPresent()){
+            throw new ServiceException("Publication does not exist!");
+        }
+        pb.get().delLikes(ou.get());
+        this.publicationRepository.save(pb.get());
+        return pb.get();
+    }
 
 }

@@ -16,11 +16,8 @@ import org.udg.pds.springtodo.service.UserService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 import java.text.SimpleDateFormat;
-import java.util.Optional;
 
 @RequestMapping(path="/publications")
 @RestController
@@ -54,14 +51,23 @@ public class PublicationController  extends BaseController{
     }
 
     @GetMapping(path="/{id}/likes")
-    public int getLikes(HttpSession session, @PathVariable("id") Long publicationId) {
-        getLoggedUser(session);
-
+    public List<Integer> getLikes(HttpSession session, @PathVariable("id") Long publicationId) {
+        Long userId = getLoggedUser(session);
+        List<Integer> l = new ArrayList<Integer>();
         Optional<Publication> op = publicationService.crud().findById(publicationId);
         if(!op.isPresent()){
             throw new ServiceException("Publication does not exist!");
         }
-        return op.get().getLikes();
+        l.add(op.get().getLikes());
+        Optional<User> ou = userService.crud().findById(userId);
+        if(!ou.isPresent()) throw new ServiceException("User does not exist!");
+        if(op.get().hasLiked(ou.get())==true){
+            l.add(1);
+        }
+        else{
+            l.add(0);
+        }
+        return l;
     }
 
     @GetMapping(path="/{id}/comments")
@@ -111,6 +117,20 @@ public class PublicationController  extends BaseController{
         u.addPublication(p);
         publicationService.addPublication(p);
         return BaseController.OK_MESSAGE;
+    }
+
+    @DeleteMapping(path="/{id}")
+    public String deletePublication(HttpSession session, @PathVariable("id") Long publicationId) {
+
+        publicationService.crud().deleteById(publicationId);
+        return BaseController.OK_MESSAGE;
+    }
+
+    @DeleteMapping(path="/{id}/delLike")
+    public Publication deleteLike(HttpSession session, @PathVariable("id") Long publicationId){
+        Long userId = this.getLoggedUser(session);
+        Publication pb = publicationService.deleteLike(userId, publicationId);
+        return pb;
     }
 
     static class PublicationPost {
