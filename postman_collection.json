@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a8a0ab1f-e95b-4707-b617-ab767aa7c180",
+		"_postman_id": "145aab07-f2e1-41e1-a394-6e2115059750",
 		"name": "PDS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -270,6 +270,54 @@
 			},
 			"response": [
 				{
+					"name": "Logout OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/users/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:28:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "\"ok\""
+				},
+				{
 					"name": "Logout error",
 					"originalRequest": {
 						"method": "POST",
@@ -320,54 +368,6 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"timestamp\": \"2019-02-14T10:28:55.274+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User is not authenticated!\",\n    \"path\": \"/users/logout\"\n}"
-				},
-				{
-					"name": "Logout OK",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:8080/users/logout",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"logout"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain;charset=UTF-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "4"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:28:30 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "\"ok\""
 				}
 			]
 		},
@@ -615,7 +615,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/publications/1/likes",
+			"name": "localhost:8080/publications/1/like",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -628,7 +628,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8080/publications/1/likes",
+					"raw": "localhost:8080/publications/1/like",
 					"host": [
 						"localhost"
 					],
@@ -636,7 +636,7 @@
 					"path": [
 						"publications",
 						"1",
-						"likes"
+						"like"
 					]
 				},
 				"description": "URI: <b> POST /publications/{id}/likes </b> <br>\nPer afegir un like a la publicació amb identificador \"id\"."
@@ -644,7 +644,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/publications/1/likes/1",
+			"name": "localhost:8080/publications/1/delLike",
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -657,7 +657,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8080/publications/1/likes/1",
+					"raw": "localhost:8080/publications/1/delLike",
 					"host": [
 						"localhost"
 					],
@@ -665,8 +665,7 @@
 					"path": [
 						"publications",
 						"1",
-						"likes",
-						"1"
+						"delLike"
 					]
 				},
 				"description": "URI: <b> DELETE /publications/{pid}/likes/{lid} </b> <br>\nPer esborrar el like numero \"lid\" de la publicació amb identificador \"id\"."
