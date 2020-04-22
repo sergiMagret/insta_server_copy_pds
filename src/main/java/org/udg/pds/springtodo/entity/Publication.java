@@ -38,6 +38,7 @@ public class Publication implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length=999999999)
     private String photo;
 
     private String description;
