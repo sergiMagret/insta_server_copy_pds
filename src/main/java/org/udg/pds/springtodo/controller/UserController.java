@@ -142,6 +142,14 @@ public class UserController extends BaseController {
         return BaseController.OK_MESSAGE;
     }
 
+    @PutMapping(path="/self", consumes = "application/json")
+    @JsonView(Views.Private.class)
+    public String modifyProfile(HttpSession session, @RequestBody DataToMod data){
+        Long loggedUserId = getLoggedUser(session);
+        userService.UpdateProfile(loggedUserId,data.pic,data.name,data.desc);
+        return BaseController.OK_MESSAGE;
+    }
+
     @DeleteMapping(path="/{id}")
   public String deleteUser(HttpSession session, @PathVariable("id") Long userId) {
 
@@ -201,7 +209,11 @@ public class UserController extends BaseController {
     }
 
 
-
+    static class DataToMod{
+        public String pic;
+        public String name;
+        public String desc;
+    }
 
     static class LoginUser {
         @NotNull

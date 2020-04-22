@@ -107,13 +107,28 @@ public class User implements Serializable {
     }
 
     @JsonView(Views.Public.class)
+    public void SetName(String newName){
+        this.name = newName;
+    }
+
+    @JsonView(Views.Public.class)
     public String getName(){
         return name;
     }
 
     @JsonView(Views.Public.class)
+    public void SetDesc(String newDesc){
+        this.description = newDesc;
+    }
+
+    @JsonView(Views.Public.class)
     public String getDescription(){
         return description;
+    }
+
+    @JsonView(Views.Public.class)
+    public void SetPicture(String newPic){
+        this.profilePicture = newPic;
     }
 
     @JsonView(Views.Public.class)

@@ -1,5 +1,6 @@
 package org.udg.pds.springtodo.service;
 
+import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +10,7 @@ import org.udg.pds.springtodo.entity.Task;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.repository.UserRepository;
 
+import javax.validation.constraints.Null;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -59,6 +61,15 @@ public class UserService {
       return uo.get();
     else
       throw new ServiceException(String.format("User with id = % dos not exists", id));
+  }
+
+  public User UpdateProfile(long id,String pic,String name,String desc){
+      User u = this.getUser(id);
+      if(pic != null && !pic.isEmpty()){u.SetPicture(pic);}
+      if(name != null && !name.isEmpty()){u.SetName(name);}
+      if(desc != null && !desc.isEmpty()){u.SetDesc(desc);}
+      userRepository.save(u);
+      return u;
   }
 
   public User getUserProfile(long id) {
