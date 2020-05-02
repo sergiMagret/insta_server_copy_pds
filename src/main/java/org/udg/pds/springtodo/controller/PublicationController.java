@@ -33,11 +33,14 @@ public class PublicationController  extends BaseController{
     @GetMapping
     @JsonView(Views.Public.class)
     public Collection<Publication> listAllPublications(HttpSession session,
-                                                       @RequestParam(value = "from", required = false) Date from) {
+                                                       @RequestParam Integer page, @RequestParam Integer size) {
         Long userId = getLoggedUser(session);
-
-        return publicationService.getPublications();
+        Collection<User> llista=userService.getFollowed(userId);
+        llista.add(userService.getUser(userId));
+        return publicationService.publicationsFollowed(llista,page,size);
     }
+
+
 
     @GetMapping(path="/{id}")
     public Publication getPublication(HttpSession session, @PathVariable("id") Long publicationId) {
@@ -104,6 +107,8 @@ public class PublicationController  extends BaseController{
         Publication pb = publicationService.addLike(userId, publicationId);
         return pb;
     }
+
+
 
 
 
