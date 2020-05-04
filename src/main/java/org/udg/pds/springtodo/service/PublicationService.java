@@ -1,6 +1,9 @@
 package org.udg.pds.springtodo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.IdObject;
@@ -10,9 +13,11 @@ import org.udg.pds.springtodo.entity.Views;
 import org.udg.pds.springtodo.repository.PublicationRepository;
 
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Collection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -78,6 +83,11 @@ public class PublicationService {
         pb.get().delLikes(ou.get());
         this.publicationRepository.save(pb.get());
         return pb.get();
+    }
+
+    public Collection<Publication> publicationsFollowed(Collection<User> followed, Integer page, Integer size){
+        Pageable p = PageRequest.of(page, size);
+        return publicationRepository.getFollowersPublications(followed, p);
     }
 
 }
