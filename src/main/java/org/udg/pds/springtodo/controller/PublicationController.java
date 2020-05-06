@@ -45,7 +45,6 @@ public class PublicationController  extends BaseController{
     @GetMapping(path="/{id}")
     public Publication getPublication(HttpSession session, @PathVariable("id") Long publicationId) {
         getLoggedUser(session);
-
         Optional<Publication> op = publicationService.crud().findById(publicationId);
         if(!op.isPresent()){
             throw new ServiceException("Publication does not exist!");
