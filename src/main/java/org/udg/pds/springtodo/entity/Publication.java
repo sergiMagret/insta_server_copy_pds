@@ -8,6 +8,7 @@ import org.udg.pds.springtodo.serializer.JsonDateDeserializer;
 import org.udg.pds.springtodo.serializer.JsonDateSerializer;
 
 import javax.persistence.*;
+import javax.swing.text.View;
 import java.io.Serializable;
 import java.util.*;
 import java.text.SimpleDateFormat;
@@ -47,6 +48,9 @@ public class Publication implements Serializable {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<User> likes = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<User> taggedUsers = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_user")
@@ -94,6 +98,16 @@ public class Publication implements Serializable {
     @JsonView(Views.Public.class)
     public int getLikes() {
         return likes.size();
+    }
+
+    @JsonView(Views.Public.class)
+    public Set<User> getTaggedUsers(){
+        return taggedUsers;
+    }
+
+    @JsonView(Views.Public.class)
+    public void tagUser(User u){
+        taggedUsers.add(u);
     }
 
     @JsonIgnore

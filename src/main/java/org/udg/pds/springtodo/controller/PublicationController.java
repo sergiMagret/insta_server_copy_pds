@@ -73,6 +73,13 @@ public class PublicationController  extends BaseController{
         return l;
     }
 
+    @GetMapping(path="/{id}/tagged")
+    public Set<User> getTaggedUsers(HttpSession session, @PathVariable("id") Long publicationId){
+        Optional<Publication> op = publicationService.crud().findById(publicationId);
+        if(!op.isPresent()) throw new ServiceException("User does not exist!");
+        return op.get().getTaggedUsers();
+    }
+
     @GetMapping(path="/{id}/comments")
     public Collection<Comment> getComments(HttpSession session, @PathVariable("id") Long publicationId, @RequestParam Integer page, @RequestParam Integer size) {
         getLoggedUser(session);
@@ -82,6 +89,13 @@ public class PublicationController  extends BaseController{
             throw new ServiceException("Publication does not exist!");
         }
         return commentService.getComments(publicationId,page,size);
+    }
+
+    @PostMapping(path="/{publicationId}/{userId}/tag")
+    public Publication tagUser(HttpSession session, @PathVariable("publicationId") Long publicationId, @PathVariable("userId") Long userId){
+        Publication pb = publicationService.tagUser(userId, publicationId);
+
+        return pb;
     }
 
     @PostMapping(path="/{id}/comments")
