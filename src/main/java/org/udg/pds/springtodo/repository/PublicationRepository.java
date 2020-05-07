@@ -23,5 +23,8 @@ public interface PublicationRepository extends CrudRepository<Publication, Long>
 
     @Query ("SELECT p FROM publications p WHERE p.user IN (:followers) ORDER BY p.date")
     List<Publication> getFollowersPublications(@Param("followers") Collection<User> followers, Pageable p);
+
+    @Query("SELECT p FROM  publications p WHERE  p.user=:user ORDER BY p.date")
+    List <Publication> getAllfromUser(User user, Pageable p);
 }
 

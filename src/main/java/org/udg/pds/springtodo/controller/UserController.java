@@ -2,6 +2,8 @@ package org.udg.pds.springtodo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
@@ -77,9 +79,9 @@ public class UserController extends BaseController {
     /** For the user who wants to see another user's publications. **/
     @GetMapping(path="/{id}/publications")
     @JsonView(Views.Public.class)
-    public Collection<Publication> getUserPublicationsPublic(HttpSession session, @PathVariable("id") Long userId){
+    public Collection<Publication> getUserPublicationsPublic(HttpSession session, @PathVariable("id") Long userId, @RequestParam Integer page, @RequestParam Integer size){
         getLoggedUser(session);
-        return publicationService.getUserPublications(userId);
+        return publicationService.getUserPublications(userId, page, size);
     }
 
     /** For the private view of your own profile, a user wants to see its own profile with all the information. **/
@@ -93,9 +95,9 @@ public class UserController extends BaseController {
     /** For the authenticated user who is trying to see his/her own photos. */
     @GetMapping(path="/self/publications")
     @JsonView(Views.Private.class)
-    public Collection<Publication> getUserPublicationsPrivate(HttpSession session) {
+    public Collection<Publication> getUserPublicationsPrivate(HttpSession session,@RequestParam Integer page, @RequestParam Integer size) {
         Long userId = getLoggedUser(session);
-        return publicationService.getUserPublications(userId);
+        return publicationService.getUserPublications(userId, page, size);
     }
 
     @GetMapping(path="/{id}/followed")
