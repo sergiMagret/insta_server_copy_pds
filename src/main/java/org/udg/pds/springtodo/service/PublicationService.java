@@ -39,10 +39,11 @@ public class PublicationService {
         return publicationRepository.getAll();
     }
 
-    public Collection<Publication> getUserPublications(Long userId) {
+    public Collection<Publication> getUserPublications(Long userId, Integer page, Integer size) {
+        Pageable p = PageRequest.of(page, size);
         Optional<User> ou = userService.crud().findById(userId);
         if(!ou.isPresent()) throw new ServiceException("User does not exist!");
-        return ou.get().getPublications();
+        return publicationRepository.getAllfromUser(ou.get(), p);
     }
 
     public IdObject addPublication (Publication p) {
