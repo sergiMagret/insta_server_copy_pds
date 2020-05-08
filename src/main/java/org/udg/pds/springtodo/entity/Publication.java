@@ -113,6 +113,11 @@ public class Publication implements Serializable {
         return hs;
     }
 
+    @JsonView(Views.Public.class)
+    public int getNComments() {
+        return comments.size();
+    }
+
     @JsonIgnore
     public Collection<Comment> getComments(){ return comments;}
 
