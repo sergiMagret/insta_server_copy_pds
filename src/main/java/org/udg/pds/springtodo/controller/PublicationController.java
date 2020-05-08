@@ -164,6 +164,25 @@ public class PublicationController  extends BaseController{
         return pb;
     }
 
+    @DeleteMapping(path="/{publicationId}/delComment/{commentId}")
+    public String deleteComment(HttpSession session,
+                                @PathVariable("publicationId") Long publicationId,
+                                @PathVariable("commentId") Long commentId){
+        commentService.crud().deleteById(commentId);
+        return BaseController.OK_MESSAGE;
+    }
+
+
+    @PutMapping(path="/{publicationId}/editComment/{commentId}")
+    public Comment editComment (HttpSession session,
+                                @PathVariable("publicationId") Long publicationId,
+                                @PathVariable("commentId") Long commentId,
+                                @Valid @RequestBody  CommentPost cp){
+        Comment c = commentService.editComment(commentId,cp.text);
+        return c;
+    }
+
+
     static class PublicationPost {
         @NotNull
         public String photo;
