@@ -72,6 +72,18 @@ public class PublicationController  extends BaseController{
         return l;
     }
 
+    @GetMapping(path="/{id}/nComments")
+    public Integer getNumComments(HttpSession session, @PathVariable("id") Long publicationId) {
+        Integer n = 0;
+        Optional<Publication> op = publicationService.crud().findById(publicationId);
+        if(!op.isPresent()){
+            throw new ServiceException("Publication does not exist!");
+        }
+        n = op.get().getNComments();
+        return n;
+    }
+
+
     @GetMapping(path="/{id}/comments")
     public Collection<Comment> getComments(HttpSession session, @PathVariable("id") Long publicationId, @RequestParam Integer page, @RequestParam Integer size) {
         getLoggedUser(session);
