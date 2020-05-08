@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.*;
-import org.udg.pds.springtodo.service.CommentService;
-import org.udg.pds.springtodo.service.GroupService;
-import org.udg.pds.springtodo.service.PublicationService;
-import org.udg.pds.springtodo.service.UserService;
+import org.udg.pds.springtodo.service.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -29,6 +26,8 @@ public class PublicationController  extends BaseController{
     UserService userService;
     @Autowired
     CommentService commentService;
+    @Autowired
+    HashtagService hashtagService;
 
     @GetMapping
     @JsonView(Views.Public.class)
@@ -120,7 +119,35 @@ public class PublicationController  extends BaseController{
         p.setUser(u);
         u.addPublication(p);
         publicationService.addPublication(p);
+
+        List<String> hashtags = searchForHashtags(pub.description);
+        for(String name: hashtags){ // For every hashtag that have been found in the description
+            // Since it's a many to many relationship between hashtag and publication, if you add the
+            // publication to the list of publications that the hashtag has, it will automatically appear
+            // on the other side of the relationship, than means in the list of hashtags of the publication.
+            // Because of that you only have to add it to one side.
+            try{
+                Hashtag h = hashtagService.getHashtagByName(name);
+                publicationService.addHashtagTo(p, h);
+            }catch(ServiceException ex){
+                Hashtag h = hashtagService.addHashtag(name);
+                publicationService.addHashtagTo(p, h);
+            }
+        }
+
         return BaseController.OK_MESSAGE;
+    }
+
+    private List<String> searchForHashtags(String comment) {
+        String[] words = comment.trim().split("\\s+"); // Split the comment into the different words, separated by spaces.
+        List<String> hashtags = new ArrayList<>();
+        for(String w : words){
+            if(w.charAt(0) == '#'){ // If the split result starts with a #, then we add it to the list.
+                w = w.substring(1); // Erase the # at the beginning of the word.
+                hashtags.add(w);
+            }
+        }
+        return hashtags;
     }
 
     @DeleteMapping(path="/{id}")
