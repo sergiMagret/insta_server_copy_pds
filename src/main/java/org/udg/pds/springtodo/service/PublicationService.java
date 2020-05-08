@@ -6,10 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
-import org.udg.pds.springtodo.entity.IdObject;
-import org.udg.pds.springtodo.entity.Publication;
-import org.udg.pds.springtodo.entity.User;
-import org.udg.pds.springtodo.entity.Views;
+import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.repository.PublicationRepository;
 
 
@@ -30,6 +27,8 @@ public class PublicationService {
     PublicationService publicationService;
     @Autowired
     UserService userService;
+    @Autowired
+    HashtagService hashtagService;
 
     public PublicationRepository crud() {
         return publicationRepository;
@@ -89,6 +88,15 @@ public class PublicationService {
     public Collection<Publication> publicationsFollowed(Collection<User> followed, Integer page, Integer size){
         Pageable p = PageRequest.of(page, size);
         return publicationRepository.getFollowersPublications(followed, p);
+    }
+
+    public void addHashtagTo(Publication p, Hashtag h){
+        // These two lines are added to check if both the hashtag and the publication exists.
+        hashtagService.getHashtag(h.getId());
+        publicationService.getPublication(p.getId());
+
+        p.addHashtag(h);
+        publicationRepository.save(p);
     }
 
 }
