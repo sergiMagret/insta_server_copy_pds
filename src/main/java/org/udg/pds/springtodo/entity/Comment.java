@@ -68,6 +68,8 @@ public class Comment implements Serializable {
         return text;
     }
 
+    public void setText(String text){ this.text = text;}
+
     @JsonIgnore
     public Publication getPublication() {
         return publication;
