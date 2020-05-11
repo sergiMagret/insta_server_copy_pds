@@ -50,7 +50,7 @@ public class Publication implements Serializable {
     private Set<User> likes = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<User> taggedUsers = new HashSet<>();
+    private Collection <User> taggedUsers;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_user")
@@ -101,13 +101,18 @@ public class Publication implements Serializable {
     }
 
     @JsonView(Views.Public.class)
-    public Set<User> getTaggedUsers(){
+    public Collection<User> getTaggedUsers(){
         return taggedUsers;
     }
 
     @JsonView(Views.Public.class)
     public void tagUser(User u){
         taggedUsers.add(u);
+    }
+
+    @JsonView(Views.Public.class)
+    public boolean alreadyTagged(User u){
+        return taggedUsers.contains(u);
     }
 
     @JsonIgnore
@@ -121,6 +126,11 @@ public class Publication implements Serializable {
     @JsonView(Views.Public.class)
     public void delLikes(User u) {
         this.likes.remove(u);
+    }
+
+    @JsonView(Views.Public.class)
+    public int nTaggedUsers() {
+        return this.taggedUsers.size();
     }
 
     @JsonView(Views.Public.class)

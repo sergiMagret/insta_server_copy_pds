@@ -73,7 +73,7 @@ public class PublicationController  extends BaseController{
     }
 
     @GetMapping(path="/{id}/tagged")
-    public Set<User> getTaggedUsers(HttpSession session, @PathVariable("id") Long publicationId){
+    public Collection<User> getTaggedUsers(HttpSession session, @PathVariable("id") Long publicationId){
         Optional<Publication> op = publicationService.crud().findById(publicationId);
         if(!op.isPresent()) throw new ServiceException("User does not exist!");
         return op.get().getTaggedUsers();
@@ -90,11 +90,11 @@ public class PublicationController  extends BaseController{
         return commentService.getComments(publicationId,page,size);
     }
 
-    @PostMapping(path="/{publicationId}/{userId}/tag")
-    public Publication tagUser(HttpSession session, @PathVariable("publicationId") Long publicationId, @PathVariable("userId") Long userId){
-        Publication pb = publicationService.tagUser(userId, publicationId);
+    @PostMapping(path="/{publicationId}/{username}/tag")
+    public Integer tagUser(HttpSession session, @PathVariable("publicationId") Long publicationId, @PathVariable("username") String userName){
+        int res = publicationService.tagUser(userName, publicationId);
 
-        return pb;
+        return res;
     }
 
     @PostMapping(path="/{id}/comments")
@@ -127,14 +127,14 @@ public class PublicationController  extends BaseController{
 
     @PostMapping (consumes = "application/json")
     @JsonView(Views.Private.class)
-    public String postPublication (HttpSession session,@Valid @RequestBody PublicationPost pub){
+    public Long postPublication (HttpSession session,@Valid @RequestBody PublicationPost pub){
         Publication p = new Publication(pub.photo, pub.description, pub.date);
         Long loggedUserId = getLoggedUser(session);
         User u = userService.getUserProfile(loggedUserId);
         p.setUser(u);
         u.addPublication(p);
         publicationService.addPublication(p);
-        return BaseController.OK_MESSAGE;
+        return p.getId();
     }
 
     @DeleteMapping(path="/{id}")
