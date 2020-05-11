@@ -114,7 +114,7 @@ public class UserService {
         if(userId.equals(followedId)) {
             throw new ServiceException("You can't unfollow yoursef!");
         }
-        ou.get().deleteFollowed(of.get()); // Add user
+        ou.get().deleteFollowed(of.get()); // Delete user
         userRepository.save(ou.get()); // Update the DB
     }
 

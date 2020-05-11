@@ -58,6 +58,9 @@ public class Publication implements Serializable {
     @Column(name = "fk_user", insertable = false, updatable = false)
     private Long userId;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Hashtag> hashtags = new HashSet<>(); // Set because a publication can't cave the same hashtag more than once.
+
     @JsonView(Views.Public.class)
     public Long getId() {
         return id;
@@ -94,6 +97,25 @@ public class Publication implements Serializable {
     @JsonView(Views.Public.class)
     public int getLikes() {
         return likes.size();
+    }
+
+    public void addHashtag(Hashtag h){
+        this.hashtags.add(h);
+    }
+
+    @JsonView(Views.Public.class)
+    public Collection<String> getHashtags(){
+        List<String> hs = new ArrayList<>();
+        for(Hashtag h : hashtags){
+            hs.add(h.getName());
+        }
+
+        return hs;
+    }
+
+    @JsonView(Views.Public.class)
+    public int getNComments() {
+        return comments.size();
     }
 
     @JsonIgnore
