@@ -15,8 +15,6 @@ import java.util.List;
 
 @Component
 public interface PublicationRepository extends CrudRepository<Publication, Long> {
-    /* @Query("SELECT p FROM publications p WHERE p.id=:id")
-    List<Publication> findByID(@Param("id") Long id); */
 
     @Query ("SELECT p FROM publications p")
     List<Publication> getAll();

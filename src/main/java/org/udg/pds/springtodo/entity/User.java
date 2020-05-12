@@ -1,6 +1,10 @@
 package org.udg.pds.springtodo.entity;
 
 import com.fasterxml.jackson.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.udg.pds.springtodo.service.PublicationService;
 
@@ -159,6 +163,44 @@ public class User implements Serializable {
     public Set<User> getFollowed(){
         return followed;
     }
+
+    @JsonIgnore
+    @JsonView(Views.Public.class)
+    public List<User> getFollowedPage(Pageable pageable){
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+
+        List<User> list;
+        List<User>llistaF=new ArrayList<User> (followed);
+        if (followed.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, followed.size());
+            list = llistaF.subList(startItem, toIndex);
+        }
+
+        return list;
+    }
+
+    @JsonIgnore
+    @JsonView(Views.Public.class)
+    public List<User> getFollowersPage(Pageable pageable){
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+
+        List<User> list;
+        List<User>llistaF=new ArrayList<User> (followers);
+        if (followers.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, followers.size());
+            list = llistaF.subList(startItem, toIndex);
+        }
+        return list;
+    }
+
 
     @JsonIgnore
     public void isFollowedBy(User u) {

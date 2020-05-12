@@ -119,9 +119,6 @@ public class PublicationController  extends BaseController{
     }
 
 
-
-
-
     @PostMapping (consumes = "application/json")
     @JsonView(Views.Private.class)
     public String postPublication (HttpSession session,@Valid @RequestBody PublicationPost pub){
