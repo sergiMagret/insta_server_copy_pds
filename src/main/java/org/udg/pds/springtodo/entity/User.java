@@ -82,10 +82,10 @@ public class User implements Serializable {
     private Set<Group> memberGroups = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "followed")
-    private List<User> followers = new ArrayList<>(); // Using a Set because a user can't be followed more than once by the same user
+    private Set<User> followers = new HashSet<>(); // Using a Set because a user can't be followed more than once by the same user
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<User> followed = new ArrayList<>(); // Using a Set because a user can't follow more than once the same user
+    private Set<User> followed = new HashSet<>(); // Using a Set because a user can't follow more than once the same user
 
    //I use a set to avoid dupliccates as a user can't like a photo more tha once
     @ManyToMany(mappedBy = "likes", cascade = CascadeType.ALL)
@@ -154,13 +154,13 @@ public class User implements Serializable {
     // The exact list of people you follow, or who follows you shouldn't be serialized when serializing the User, there is a URI that allows you to get this.
     @JsonIgnore
     @JsonView(Views.Public.class)
-    public List<User> getFollowers(){
+    public Set<User> getFollowers(){
         return followers;
     }
 
     @JsonIgnore
     @JsonView(Views.Public.class)
-    public List<User> getFollowed(){
+    public Set<User> getFollowed(){
         return followed;
     }
 
@@ -172,12 +172,12 @@ public class User implements Serializable {
         int startItem = currentPage * pageSize;
 
         List<User> list;
-
+        List<User>llistaF=new ArrayList<User> (followed);
         if (followed.size() < startItem) {
             list = Collections.emptyList();
         } else {
             int toIndex = Math.min(startItem + pageSize, followed.size());
-            list = followed.subList(startItem, toIndex);
+            list = llistaF.subList(startItem, toIndex);
         }
 
         return list;
@@ -191,12 +191,12 @@ public class User implements Serializable {
         int startItem = currentPage * pageSize;
 
         List<User> list;
-
+        List<User>llistaF=new ArrayList<User> (followers);
         if (followers.size() < startItem) {
             list = Collections.emptyList();
         } else {
             int toIndex = Math.min(startItem + pageSize, followers.size());
-            list = followers.subList(startItem, toIndex);
+            list = llistaF.subList(startItem, toIndex);
         }
         return list;
     }
