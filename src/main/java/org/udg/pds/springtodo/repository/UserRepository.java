@@ -24,4 +24,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     @Query("SELECT u FROM users u WHERE u.username LIKE :text OR u.name LIKE :text ORDER BY u.username")
     List<User> getFiltered(String text, Pageable pageable);
+
+
 }

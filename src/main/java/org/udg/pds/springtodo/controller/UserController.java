@@ -2,6 +2,7 @@ package org.udg.pds.springtodo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 // This class is used to process all the User related URLs
 @RequestMapping(path="/users")
@@ -102,30 +104,30 @@ public class UserController extends BaseController {
 
     @GetMapping(path="/{id}/followed")
     @JsonView(Views.Public.class)
-    public Collection<User> getFollowedById(HttpSession session, @PathVariable("id") Long userId){
+    public List<User> getFollowedById(HttpSession session, @PathVariable("id") Long userId, @RequestParam Integer page, @RequestParam Integer size){
         getLoggedUser(session);
-        return userService.getFollowed(userId);
+        return userService.getFollowedPage(userId, page, size);
     }
 
     @GetMapping(path="/{id}/followers")
     @JsonView(Views.Public.class)
-    public Collection<User> getFollowersById(HttpSession session, @PathVariable("id") Long userId){
+    public List<User> getFollowersById(HttpSession session, @PathVariable("id") Long userId, @RequestParam Integer page, @RequestParam Integer size){
         getLoggedUser(session);
-        return userService.getFollowers(userId);
+        return userService.getFollowersPage(userId, page, size);
     }
 
     @GetMapping(path="/self/followed")
     @JsonView(Views.Private.class)
-    public Collection<User> getFollowed(HttpSession session){
+    public List<User> getFollowed(HttpSession session, @RequestParam Integer page, @RequestParam Integer size){
         Long userId = getLoggedUser(session);
-        return userService.getFollowed(userId);
+        return userService.getFollowedPage(userId, page, size);
     }
 
     @GetMapping(path="/self/followers")
     @JsonView(Views.Private.class)
-    public Collection<User> getFollowers(HttpSession session){
+    public List<User> getFollowers(HttpSession session, @RequestParam Integer page, @RequestParam Integer size){
         Long userId = getLoggedUser(session);
-        return userService.getFollowers(userId);
+        return userService.getFollowersPage(userId, page, size);
     }
 
     @PostMapping(path="/self/followed", consumes = "application/json")

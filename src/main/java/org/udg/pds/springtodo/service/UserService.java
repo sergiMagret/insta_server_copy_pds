@@ -2,6 +2,7 @@ package org.udg.pds.springtodo.service;
 
 import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -117,6 +118,14 @@ public class UserService {
         userRepository.save(ou.get()); // Update the DB
     }
 
+    public List<User> getFollowersPage(Long userId,Integer page,Integer size){
+        Pageable p = PageRequest.of(page, size);
+        Optional<User> ou = userRepository.findById(userId);
+        if(!ou.isPresent()){
+            throwUserDoesNotExist(userId);
+        }
+        return ou.get().getFollowersPage(p);
+    }
     public Collection<User> getFollowers(Long userId){
         Optional<User> ou = userRepository.findById(userId);
         if(!ou.isPresent()){
@@ -125,6 +134,14 @@ public class UserService {
         return ou.get().getFollowers();
     }
 
+    public List<User> getFollowedPage(Long userId, Integer page, Integer size){
+        Pageable p = PageRequest.of(page, size);
+        Optional<User> ou = userRepository.findById(userId);
+        if(!ou.isPresent()){
+            throwUserDoesNotExist(userId);
+        }
+        return ou.get().getFollowedPage(p);
+    }
     public Collection<User> getFollowed(Long userId){
         Optional<User> ou = userRepository.findById(userId);
         if(!ou.isPresent()){
