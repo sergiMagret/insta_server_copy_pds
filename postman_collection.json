@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "145aab07-f2e1-41e1-a394-6e2115059750",
+		"_postman_id": "b1915b2d-6e23-416d-b7e4-b594b71ab926",
 		"name": "PDS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -138,6 +138,54 @@
 			},
 			"response": [
 				{
+					"name": "Register user ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:30:15 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "\"ok\""
+				},
+				{
 					"name": "Register user error: email already exists",
 					"originalRequest": {
 						"method": "POST",
@@ -188,54 +236,6 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"timestamp\": \"2019-02-14T10:30:34.497+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Email already exist\",\n    \"path\": \"/users/register\"\n}"
-				},
-				{
-					"name": "Register user ok",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/users/register",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"register"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain;charset=UTF-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "4"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:30:15 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "\"ok\""
 				}
 			]
 		},
@@ -269,54 +269,6 @@
 				"description": "URI: <b> POST /users/logout </b> <br>\nPer tancar la sessió de l'usuari amb la sessió iniciada."
 			},
 			"response": [
-				{
-					"name": "Logout OK",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:8080/users/logout",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"logout"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain;charset=UTF-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "4"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:28:30 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "\"ok\""
-				},
 				{
 					"name": "Logout error",
 					"originalRequest": {
@@ -368,6 +320,54 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"timestamp\": \"2019-02-14T10:28:55.274+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User is not authenticated!\",\n    \"path\": \"/users/logout\"\n}"
+				},
+				{
+					"name": "Logout OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/users/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:28:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "\"ok\""
 				}
 			]
 		},
@@ -786,7 +786,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/1/publications",
+					"raw": "localhost:8080/users/1/publications?page=0&size=20",
 					"host": [
 						"localhost"
 					],
@@ -795,6 +795,16 @@
 						"users",
 						"1",
 						"publications"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						}
 					]
 				},
 				"description": "URI: <b> GET /users/{id}/publications </b> <br>\nPer llistar les publicacions de l'usuari amb identificador \"id\"."
@@ -807,7 +817,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/self/publications",
+					"raw": "localhost:8080/users/self/publications?page=0&size=20",
 					"host": [
 						"localhost"
 					],
@@ -816,6 +826,16 @@
 						"users",
 						"self",
 						"publications"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						}
 					]
 				},
 				"description": "URI: <b> GET /users/self/publications </b> <br>\nPer llistar les publicacions de l'usuari amb sessió iniciada."
@@ -853,6 +873,19 @@
 						"users",
 						"self",
 						"followed"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "20",
+							"description": "0",
+							"disabled": true
+						}
 					]
 				},
 				"description": "URI: <b> POST /users/self/followed </b> <br>\nPer afegir un usuari nou a la llista de seguidors de l'usuari amb la sessió iniciada. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> id </li>\n</ul>"
@@ -865,7 +898,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/1/followers",
+					"raw": "localhost:8080/users/1/followers?page=0&size=20",
 					"host": [
 						"localhost"
 					],
@@ -874,6 +907,16 @@
 						"users",
 						"1",
 						"followers"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						}
 					]
 				},
 				"description": "URI: <b> GET /users/{id}/followers </b> <br>\nPer llistar els seguidors de l'usuari amb identificador \"id\"."
@@ -886,7 +929,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/self/followers",
+					"raw": "localhost:8080/users/self/followers?page=0&size=20",
 					"host": [
 						"localhost"
 					],
@@ -895,6 +938,16 @@
 						"users",
 						"self",
 						"followers"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						}
 					]
 				},
 				"description": "URI: <b> GET /users/self/followers </b> <br>\nPer llistar els seguidors de l'usuari amb sessió iniciada."
@@ -907,7 +960,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/1/followed",
+					"raw": "localhost:8080/users/1/followed?page=0&size=20",
 					"host": [
 						"localhost"
 					],
@@ -916,6 +969,16 @@
 						"users",
 						"1",
 						"followed"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						}
 					]
 				},
 				"description": "URI: <b> GET /users/{id}/followed </b> <br>\nPer llistar els usuaris que segueix l'usuari amb identificador \"id\"."
@@ -928,7 +991,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/users/self/followed",
+					"raw": "localhost:8080/users/self/followed?page=0&size=20",
 					"host": [
 						"localhost"
 					],
@@ -937,6 +1000,16 @@
 						"users",
 						"self",
 						"followed"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						}
 					]
 				},
 				"description": "URI: <b> GET /users/self/followed </b> <br>\nPer llistar els usuaris que segueix l'usuari amb la sessió iniciada."
@@ -990,6 +1063,47 @@
 					]
 				},
 				"description": "URI: <b> DELETE /users/self/followed/{id} </b> <br>\nPer esborrar l'usuari amb identificador {id} de la llista de seguits de l'usuari amb la sessió iniciada."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/1/tagged",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/publications/1/tagged",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"tagged"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/{id}/{username}/tag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/publications/1/usuari/tag",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"usuari",
+						"tag"
+					]
+				}
 			},
 			"response": []
 		}
