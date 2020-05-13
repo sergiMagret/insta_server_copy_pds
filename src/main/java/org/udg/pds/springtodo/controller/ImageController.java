@@ -46,12 +46,12 @@ public class ImageController extends BaseController {
                     istream,
                     contentType);
 
+            return objectName;
+
         } catch (Exception e) {
             throw new ControllerException("Error saving file: " + e.getMessage());
         }
 
-
-        return BaseController.OK_MESSAGE;
     }
 
     @GetMapping("/{filename:.+}")

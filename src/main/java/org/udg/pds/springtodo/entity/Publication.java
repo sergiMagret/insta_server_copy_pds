@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.udg.pds.springtodo.serializer.JsonDateDeserializer;
 import org.udg.pds.springtodo.serializer.JsonDateSerializer;
+import org.udg.pds.springtodo.serializer.JsonURLSerializer;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -38,7 +39,6 @@ public class Publication implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length=999999999)
     private String photo;
 
     private String description;
@@ -85,6 +85,7 @@ public class Publication implements Serializable {
     }
 
     @JsonView(Views.Public.class)
+    @JsonSerialize(using = JsonURLSerializer.class)
     public String getPhoto() {
         return photo;
     }
@@ -153,6 +154,7 @@ public class Publication implements Serializable {
     public Date getDate() {
         return date;
     }
+
 
 }
 
