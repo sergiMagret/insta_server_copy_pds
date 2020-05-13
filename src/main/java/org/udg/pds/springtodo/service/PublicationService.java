@@ -79,6 +79,29 @@ public class PublicationService {
         return pb.get();
     }
 
+    public int tagUser (String userName, Long publicationId){
+        Optional<Publication> pb = publicationService.crud().findById(publicationId);
+        if(!pb.isPresent()){
+            throw new ServiceException("Publication does not exist!");
+        }
+        int resultat = 0;
+        List<User> u = userService.crud().findByUsername(userName);
+        boolean jaEtiquetat = pb.get().alreadyTagged(u.get(0));
+        if(pb.get().nTaggedUsers()>=20){
+            resultat = 1;
+        }
+        if(jaEtiquetat == true){
+            resultat = 2;
+        }
+        else {
+            if(u.size()>0) {
+                pb.get().tagUser(u.get(0));
+                this.publicationRepository.save(pb.get());
+            }
+        }
+        return resultat;
+    }
+
     public Publication deleteLike (Long userId, Long publicationId){
         Optional<User> ou = userService.crud().findById(userId);
         if(!ou.isPresent()) throw new ServiceException("User does not exist!");
