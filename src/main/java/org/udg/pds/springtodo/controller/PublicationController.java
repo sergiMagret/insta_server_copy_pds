@@ -71,6 +71,13 @@ public class PublicationController  extends BaseController{
         return l;
     }
 
+    @GetMapping(path="/{id}/tagged")
+    public Collection<User> getTaggedUsers(HttpSession session, @PathVariable("id") Long publicationId){
+        Optional<Publication> op = publicationService.crud().findById(publicationId);
+        if(!op.isPresent()) throw new ServiceException("User does not exist!");
+        return op.get().getTaggedUsers();
+    }
+
     @GetMapping(path="/{id}/nComments")
     public Integer getNumComments(HttpSession session, @PathVariable("id") Long publicationId) {
         Integer n = 0;
@@ -92,6 +99,13 @@ public class PublicationController  extends BaseController{
             throw new ServiceException("Publication does not exist!");
         }
         return commentService.getComments(publicationId,page,size);
+    }
+
+    @PostMapping(path="/{publicationId}/{username}/tag")
+    public Integer tagUser(HttpSession session, @PathVariable("publicationId") Long publicationId, @PathVariable("username") String userName){
+        int res = publicationService.tagUser(userName, publicationId);
+
+        return res;
     }
 
     @PostMapping(path="/{id}/comments")
@@ -119,12 +133,9 @@ public class PublicationController  extends BaseController{
     }
 
 
-
-
-
     @PostMapping (consumes = "application/json")
     @JsonView(Views.Private.class)
-    public String postPublication (HttpSession session,@Valid @RequestBody PublicationPost pub){
+    public Long postPublication (HttpSession session,@Valid @RequestBody PublicationPost pub){
         Publication p = new Publication(pub.photo, pub.description, pub.date);
         Long loggedUserId = getLoggedUser(session);
         User u = userService.getUserProfile(loggedUserId);
@@ -146,8 +157,7 @@ public class PublicationController  extends BaseController{
                 publicationService.addHashtagTo(p, h);
             }
         }
-
-        return BaseController.OK_MESSAGE;
+        return p.getId();
     }
 
     private List<String> searchForHashtags(String comment) {
