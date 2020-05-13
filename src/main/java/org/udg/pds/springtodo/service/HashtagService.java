@@ -46,6 +46,15 @@ public class HashtagService {
         }
     }
 
+    public Long getHashtagId(String name){
+        List<Hashtag> hashtags = hashtagRepository.findByName(name);
+        if(hashtags.size() == 0){
+            return Long.valueOf(-1);
+        }else{
+            return hashtags.get(0).getId();
+        }
+    }
+
     public Hashtag addHashtag(String name){
         List<Hashtag> hashtags = hashtagRepository.findByName(name);
         if(hashtags.size() > 0)

@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
+import org.udg.pds.springtodo.entity.Hashtag;
 import org.udg.pds.springtodo.entity.Publication;
 import org.udg.pds.springtodo.entity.User;
 
@@ -24,5 +25,9 @@ public interface PublicationRepository extends CrudRepository<Publication, Long>
 
     @Query("SELECT p FROM  publications p WHERE  p.user=:user ORDER BY p.date")
     List <Publication> getAllfromUser(User user, Pageable p);
+
+    @Query("SELECT p FROM  publications p WHERE  p IN (:Hpublications) ORDER BY p.date")
+    List <Publication> getAllfromHastag(Collection<Publication> Hpublications, Pageable p);
+
 }
 

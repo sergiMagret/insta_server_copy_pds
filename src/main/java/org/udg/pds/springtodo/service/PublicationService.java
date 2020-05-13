@@ -45,6 +45,13 @@ public class PublicationService {
         return publicationRepository.getAllfromUser(ou.get(), p);
     }
 
+    public Collection<Publication> getHashtagPublications(Long id,Integer page,Integer size){
+        Pageable p = PageRequest.of(page, size);
+        Optional<Hashtag> oh = hashtagService.crud().findById(id);
+        if(!oh.isPresent()) throw new ServiceException("User does not exist!");
+        return publicationRepository.getAllfromHastag(oh.get().getPublications(), p);
+    }
+
     public IdObject addPublication (Publication p) {
         publicationRepository.save(p);
         return new IdObject(p.getId());
