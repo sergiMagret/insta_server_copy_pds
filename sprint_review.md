@@ -141,3 +141,95 @@ TOTAL: 97 SP
 
 TOTAL: 86 SP
 
+# Sprint 3
+
+## Maria Sunyer i Rigau
+* [Edit mapping to return publications of followed](https://wuilder.com/jira/browse/PDS20_2B-133) -> 8 SP
+* [Add page/size capability to recycleview of timeline](https://wuilder.com/jira/browse/PDS20_2B-136) -> 5 SP
+* [Add parametres in mapping get /publications for page size capability](https://wuilder.com/jira/browse/PDS20_2B-137) -> 5 SP
+* [Add parametres to retrofit call getPublications](https://wuilder.com/jira/browse/PDS20_2B-138) -> 5 SP
+* [Add page/size capability to profile's recycle view](https://wuilder.com/jira/browse/PDS20_2B-139) -> 5 SP
+* [Add parametres in mapping get /users/self/publications](https://wuilder.com/jira/browse/PDS20_2B-140) -> 5 SP
+* [Add parametres to retrofit call getUserPublications](https://wuilder.com/jira/browse/PDS20_2B-141) -> 5 SP
+* [Add parametres to retrofit call getUsersPublicationsById](https://wuilder.com/jira/browse/PDS20_2B-145) -> 5 SP
+* [Add parametres in mapping get /users/{id}/publications](https://wuilder.com/jira/browse/PDS20_2B-146) -> 5 SP
+* [Add parametres in mapping get /users/self/followers](https://wuilder.com/jira/browse/PDS20_2B-173) -> 5 SP
+* [Add parametres in mapping get /users/self/followed](https://wuilder.com/jira/browse/PDS20_2B-176) -> 5 SP
+* [Add parametres in mapping get /users/{id}/follower](https://wuilder.com/jira/browse/PDS20_2B-177) -> 5 SP
+* [Add parametres in mapping get /users/{id}/followed](https://wuilder.com/jira/browse/PDS20_2B-178) -> 5 SP
+* [Add page/size capability to followers recycle view](https://wuilder.com/jira/browse/PDS20_2B-179) -> 5 SP
+* [Add page/size capability to followed recycle view](https://wuilder.com/jira/browse/PDS20_2B-180) -> 5 SP
+* [Add parametres to retrofit call getFollowed()](https://wuilder.com/jira/browse/PDS20_2B-181) -> 5 SP
+* [Add parametres to retrofit call getFollowers()](https://wuilder.com/jira/browse/PDS20_2B-182) -> 5 SP
+* [Add parametres to retrofit call getFollowedById()](https://wuilder.com/jira/browse/PDS20_2B-183) -> 5 SP
+* [Add parametres to retrofit call getFollowersById()](https://wuilder.com/jira/browse/PDS20_2B-184) -> 5 SP
+
+TOTAL: 98 SP
+
+
+## Oliu Llorente Moragrega
+* [Add mapping into server for GET/publications/{id}/tagged](https://wuilder.com/jira/browse/PDS20_2B-142) -> 5 SP
+* [Add mapping into server for POST /publications/{publicationId}/{username}/tag](https://wuilder.com/jira/browse/PDS20_2B-143) -> 5 SP
+* [Create the many to many relation between user and publication to add the tagged users list](https://wuilder.com/jira/browse/PDS20_2B-144) -> 5 SP
+* [Modify retrofit to add the POST to tag people](https://wuilder.com/jira/browse/PDS20_2B-147) ->5 SP
+* [Modify retrofit to add the GET to see the tagged users](https://wuilder.com/jira/browse/PDS20_2B-148) -> 5 SP
+* [Modify the publication controller so the publication post returns a Long instead of an int](https://wuilder.com/jira/browse/PDS20_2B-190) -> 3 SP
+* [Create the TagPeople activity](https://wuilder.com/jira/browse/PDS20_2B-191) -> 13 SP
+* [Create the SeeTaggedUsers activity](https://wuilder.com/jira/browse/PDS20_2B-192) -> 13 SP
+* [Create the taguser_layout layout](https://wuilder.com/jira/browse/PDS20_2B-193) -> 8 SP
+* [Create the tagged_users_layout layout](https://wuilder.com/jira/browse/PDS20_2B-194) -> 5 SP
+* [Modify the more_publication_layout to add the tag user option](https://wuilder.com/jira/browse/PDS20_2B-195) -> 5 SP
+* [Modify the publication_layout layout to add the see tagged users option](https://wuilder.com/jira/browse/PDS20_2B-196) -> 5 SP
+* [Modify the UserProfile fragment to add the option to tag users on a publication](https://wuilder.com/jira/browse/PDS20_2B-197) -> 8 SP
+* [Modify the UserProfil fragment to add the funcionality to see the tagged users on a publication](https://wuilder.com/jira/browse/PDS20_2B-198) -> 8 SP
+* [Modify TimelineFragment to add the option to see the tagged users on a publication](https://wuilder.com/jira/browse/PDS20_2B-199) -> 5 SP
+* [Modify the AddPhoto activity so when you submit a photo it brings you to the tag people option for that photo](https://wuilder.com/jira/browse/PDS20_2B-200) -> 5 SP
+
+TOTAL: 103 SP
+
+## Pau Casademont i Colomer
+* [Modify retrofit API add the DELETE comment](https://wuilder.com/jira/browse/PDS20_2B-24) -> 5 SP
+* [Add mapping into the server for DELETE /publications/{id}/comments/{id}](https://wuilder.com/jira/browse/PDS20_2B-25) -> 5 SP
+* [Add delete comment button](https://wuilder.com/jira/browse/PDS20_2B-24) -> 8 SP
+* [Set Delete comment button Visible only in Self user comments](https://wuilder.com/jira/browse/PDS20_2B-159) -> 8 SP
+* [Modify comment holder in AddComment activity to delete comments](https://wuilder.com/jira/browse/PDS20_2B-202) -> 13 SP
+* [Add mapping into the server for PUT /publications/{id}/comments/{id}](https://wuilder.com/jira/browse/PDS20_2B-163) -> 5 SP
+* [Modify retrofit API add the PUT comment](https://wuilder.com/jira/browse/PDS20_2B-164) -> 8 SP
+* [Add Edit comment button on comment_layout and set it in comment holder of AddComment Activity](https://wuilder.com/jira/browse/PDS20_2B-165) -> 5 SP
+* [Set Delete comment button Visible only in Self user comments.](https://wuilder.com/jira/browse/PDS20_2B-166) -> 8 SP
+* [Create AlertDialog in AddComment activity to edit comments.](https://wuilder.com/jira/browse/PDS20_2B-167) -> 13 SP
+* [Create edit_comment_layout](https://wuilder.com/jira/browse/PDS20_2B-168) -> 8 SP
+* [Modify comment holder in AddComment activity to edit comments](https://wuilder.com/jira/browse/PDS20_2B-201) -> 13 SP
+* [Edit UserProfileFragment so you can only edit your own publications](https://wuilder.com/jira/browse/PDS20_2B-175) -> 3 SP
+
+TOTAL: 102 SP
+
+## Roger Canet Roca
+* [Create hashtag fragment functionality](https://wuilder.com/jira/browse/PDS20_2B-203) ->  13 SP
+* [Get hashtag publications by name](https://wuilder.com/jira/browse/PDS20_2B-204) ->  13SP
+* [Possibility to search for gashtags in search fragment](https://wuilder.com/jira/browse/PDS20_2B-205) ->  8SP
+* [Recycler view in hashtag fragment](https://wuilder.com/jira/browse/PDS20_2B-206) ->  13SP
+* [Hashtag fragment interface](https://wuilder.com/jira/browse/PDS20_2B-207) ->  8SP
+* [Modify pubication interface to add counter of comments](https://wuilder.com/jira/browse/PDS20_2B-170) ->  5SP
+* [Add functionality in app to comment counter in timeline](https://wuilder.com/jira/browse/PDS20_2B-171) ->  8SP
+* [Add maping into server for GET /publication/{id}/nComments}](https://wuilder.com/jira/browse/PDS20_2B-172) -> 5 SP
+* [Add functionality in app to comment counter in Hashtag fragment](https://wuilder.com/jira/browse/PDS20_2B-208) ->  8SP
+* [Add functionality in app to comment counter in profile publications](https://wuilder.com/jira/browse/PDS20_2B-209) ->  8SP
+
+TOTAL: 89 SP
+
+## Sergi Magret Goy
+* [Add refresh option into Timeline fragment](https://wuilder.com/jira/browse/PDS20_2B-149) -> 8 SP
+* [Add refresh option into Profile fragment](https://wuilder.com/jira/browse/PDS20_2B-150) -> 8 SP
+* [Create method to detect Hashtags the descriptions of the publication](https://wuilder.com/jira/browse/PDS20_2B-151) -> 13 SP
+* [Create Hashtags, HashtagsController, HashtagsService, HashtagsRepository](https://wuilder.com/jira/browse/PDS20_2B-152) -> 13 SP
+* [Create relationship between Publications and Hashtags](https://wuilder.com/jira/browse/PDS20_2B-153) -> 5 SP
+* [Add mapping into server for GET /hashtags](https://wuilder.com/jira/browse/PDS20_2B-154) -> 5 SP
+* [Add mapping into server for GET /hashtags/{id}](https://wuilder.com/jira/browse/PDS20_2B-155) -> 5 SP
+* [Add mapping into server for GET /hashtags/{id}/publications](https://wuilder.com/jira/browse/PDS20_2B-156) -> 5 SP
+* [Update Publication, PublicationController and PublicationService to include the hashtags](https://wuilder.com/jira/browse/PDS20_2B-157) -> 13 SP
+* [Update Publication Entity on Android](https://wuilder.com/jira/browse/PDS20_2B-169) -> 5 SP
+
+TOTAL: 80 SP
+
+
