@@ -1,6 +1,7 @@
 package org.udg.pds.springtodo.entity;
 
 import com.fasterxml.jackson.annotation.*;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -64,6 +65,11 @@ public class User implements Serializable {
     /* Let's say you are the logged user A, and you request for the profile of user B, then if you are following B, the value of followsUser will be true */
     /* because you (A) are following (B). */
 
+    private String tokenFCM = null; /* Careful! The token might be null if it's not set! */
+    /* If the token is null that means the user hasn't signed in to the app or that he/she has signed out.
+    * In that case the notification wouldn't arrive to the user. Instead of trying to send the notification,
+    * the notification should be sent to a list of pending notifications for the user. */
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Task> tasks;
 
@@ -90,7 +96,7 @@ public class User implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<User> followed = new HashSet<>(); // Using a Set because a user can't follow more than once the same user
 
-   //I use a set to avoid dupliccates as a user can't like a photo more tha once
+    //I use a set to avoid dupliccates as a user can't like a photo more tha once
     @ManyToMany(mappedBy = "likes", cascade = CascadeType.ALL)
     private Set<Publication> liked = new HashSet<>();
 
@@ -258,6 +264,14 @@ public class User implements Serializable {
 
     public void deleteFollowed(User u){
         this.followed.remove(u);
+    }
+
+    public void setToken(String t){
+        this.tokenFCM = t;
+    }
+
+    public String getToken(){
+        return this.tokenFCM;
     }
 
     public void addTask(Task task) {
