@@ -1,15 +1,21 @@
 package org.udg.pds.springtodo;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import io.minio.MinioClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.service.*;
 
 import javax.annotation.PostConstruct;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -61,6 +67,8 @@ public class Global {
     @Value("${todospring.base-port:8080}")
     private String BASE_PORT;
 
+    private FirebaseApp firebaseApp;
+
 
     @PostConstruct
     void init() {
@@ -79,6 +87,25 @@ public class Global {
 
         if (BASE_URL == null) BASE_URL = "http://localhost";
         BASE_URL += ":" + BASE_PORT;
+
+        // Start the FirebaseApp configuration.
+        try {
+            String path = System.getProperty("user.dir") + "\\src\\main\\java\\org\\udg\\pds\\springtodo\\android-pds202b-firebase-adminsdk-kz0fh-424537bb93.json";
+            logger.info("Path to FirebaseApp configuration: " + path);
+            FileInputStream refreshToken = new FileInputStream(path);
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                .setCredentials(GoogleCredentials.fromStream(refreshToken))
+                .setDatabaseUrl("https://android-pds202b.firebaseio.com/")
+                .build();
+
+            firebaseApp = FirebaseApp.initializeApp(options);
+
+            // Show the name of the FirebaseApp to check it is working correctly
+            logger.info("FirebaseApp initialization OK.");
+            logger.info("FirebaseApp name: " + firebaseApp.getName());
+        } catch (IOException e) {
+            System.out.println("Create FirebaseApp Error");
+        }
 
         initData();
     }

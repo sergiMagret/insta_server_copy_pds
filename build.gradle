@@ -38,6 +38,7 @@ dependencies {
     implementation 'mysql:mysql-connector-java'
     implementation 'io.minio:minio:6.0.11'
     implementation 'commons-io:commons-io:2.6'
+    implementation 'com.google.firebase:firebase-admin:6.8.1'
 
     compileOnly 'org.projectlombok:lombok:1.18.10'
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
