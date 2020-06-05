@@ -6,10 +6,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.udg.pds.springtodo.serializer.JsonDateDeserializer;
 import org.udg.pds.springtodo.serializer.JsonDateSerializer;
-import org.udg.pds.springtodo.serializer.JsonURLSerializer;
 
 import javax.persistence.*;
-import javax.swing.text.View;
 import java.io.Serializable;
 import java.util.*;
 import java.text.SimpleDateFormat;
@@ -89,7 +87,6 @@ public class Publication implements Serializable {
     }
 
     @JsonView(Views.Public.class)
-    @JsonSerialize(using = JsonURLSerializer.class)
     public String getPhoto() {
         return photo;
     }

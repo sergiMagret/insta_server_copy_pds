@@ -46,7 +46,7 @@ public class ImageController extends BaseController {
                     istream,
                     contentType);
 
-            return objectName;
+            return "http://localhost:8080/images/" + objectName;
 
         } catch (Exception e) {
             throw new ControllerException("Error saving file: " + e.getMessage());
