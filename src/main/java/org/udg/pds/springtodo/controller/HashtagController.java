@@ -23,9 +23,9 @@ public class HashtagController extends BaseController {
 
     @GetMapping
     @JsonView(Views.Public.class)
-    public Collection<Hashtag> getHashtags(HttpSession session){
+    public Collection<Hashtag> getHashtags(HttpSession session, @RequestParam Integer page, @RequestParam Integer size){
         getLoggedUser(session);
-        return hashtagService.getHashtags();
+        return hashtagService.getHashtags(page,size);
     }
 
     @GetMapping(path="/{id}")
@@ -35,19 +35,12 @@ public class HashtagController extends BaseController {
         return hashtagService.getHashtag(id).getName();
     }
 
-    @GetMapping(path="/self")
+    @GetMapping(path="/name/{name}")
     @JsonView(Views.Public.class)
-    public Long getHashtagID(HttpSession session, @RequestParam("name") String name){
+    public Long getHashtagID(HttpSession session, @PathVariable("name") String name){
         getLoggedUser(session);
         return hashtagService.getHashtagId(name);
     }
-    /*
-    @GetMapping(path="/{id}/publications")
-    @JsonView(Views.Public.class)
-    public Collection<Publication> getPublications(HttpSession session, @PathVariable("id") Long id){
-        getLoggedUser(session);
-        return hashtagService.getHashtag(id).getPublications();
-    }*/
 
    @GetMapping(path="/{id}/publications")
     @JsonView(Views.Public.class)
@@ -57,9 +50,9 @@ public class HashtagController extends BaseController {
         return publicationService.getHashtagPublications(id,page,size);
     }
 
-    @GetMapping(path="/self/publications")
+    @GetMapping(path="/name/{name}/publications")
     @JsonView(Views.Public.class)
-    public Collection<Publication> getPublicationsByName(HttpSession session,@RequestParam("id") String name,@RequestParam Integer page, @RequestParam Integer size){
+    public Collection<Publication> getPublicationsByName(HttpSession session,@PathVariable("name") String name,@RequestParam Integer page, @RequestParam Integer size){
         getLoggedUser(session);
         Long id = hashtagService.getHashtagId(name);
         Hashtag h = hashtagService.getHashtag(id);

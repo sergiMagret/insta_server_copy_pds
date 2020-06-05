@@ -113,7 +113,7 @@ public class UserService {
         if(!ou.isPresent()){
             throwUserDoesNotExist(userId);
         }
-        return ou.get().getFollowersPage(p);
+        return userRepository.getFollowers(ou.get(), p);
     }
 
     public List<User> getFollowedPage(Long userId, Integer page, Integer size){
@@ -122,7 +122,7 @@ public class UserService {
         if(!ou.isPresent()){
             throwUserDoesNotExist(userId);
         }
-        return ou.get().getFollowedPage(p);
+        return userRepository.getFollowed(ou.get(), p);
     }
     public Collection<User> getFollowed(Long userId){
         Optional<User> ou = userRepository.findById(userId);

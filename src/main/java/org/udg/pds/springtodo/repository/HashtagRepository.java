@@ -15,7 +15,7 @@ public interface HashtagRepository extends CrudRepository<Hashtag, Long> {
     List<Hashtag> findByName(@Param("hName") String name);
 
     @Query("SELECT h FROM hashtags h")
-    List<Hashtag> getAll();
+    List<Hashtag> getAll(Pageable p);
 
     @Query("SELECT h FROM hashtags h WHERE h.name LIKE :text ORDER BY  h.name")
     List<Hashtag> getHashtagFiltered(String text, Pageable pageable);
