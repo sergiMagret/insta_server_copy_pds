@@ -120,6 +120,17 @@ public class PublicationController  extends BaseController{
         c.setUser(u);
         c.setDate(currentDate);
         commentService.addComment(c);
+        NotificationRequest request = new NotificationRequest();
+        User u2 = p.getUser();
+        if(u2.getToken() != null) { // If the token is null that means the user hasn't signed in to the app
+            request.target = u2.getToken();
+            request.title = "You have a new comment!";
+            request.body = "The user " + u2.getName() + " has commented your publication!";
+            String response = NotificationService.getInstance().sendNotification(request);
+            System.out.println(response);
+        }else{
+            System.out.println("Can't send the notification, the token is null!");
+        }
         return BaseController.OK_MESSAGE;
     }
 
