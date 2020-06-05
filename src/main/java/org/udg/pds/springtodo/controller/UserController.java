@@ -11,6 +11,7 @@ import org.udg.pds.springtodo.controller.exceptions.ControllerException;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.service.GroupService;
+import org.udg.pds.springtodo.service.NotificationService;
 import org.udg.pds.springtodo.service.PublicationService;
 import org.udg.pds.springtodo.service.UserService;
 
@@ -60,8 +61,9 @@ public class UserController extends BaseController {
   @PostMapping(path="/logout")
   @JsonView(Views.Private.class)
   public String logout(HttpSession session) {
-
-    getLoggedUser(session);
+    Long userId = getLoggedUser(session);
+    User u = userService.getUser(userId);
+    u.setToken(null); // Set the token to null to indicate the user is not signed in and the notifications won't arrive
 
     session.removeAttribute("simpleapp_auth_id");
     return BaseController.OK_MESSAGE;
@@ -134,7 +136,17 @@ public class UserController extends BaseController {
     public String addFollowed(HttpSession session, @Valid @RequestBody ID followedId) {
         Long userId = getLoggedUser(session);
         userService.addFollowed(userId, followedId.id);
-
+        NotificationRequest request = new NotificationRequest();
+        User u = userService.getUser(userId);
+        if(u.getToken() != null) { // If the token is null that means the user hasn't signed in to the app
+            request.target = u.getToken();
+            request.title = "You have a new follower!";
+            request.body = "The user " + u.getName() + " has started following you!";
+            String response = NotificationService.getInstance().sendNotification(request);
+            System.out.println(response);
+        }else{
+            System.out.println("Can't send the notification, the token is null!");
+        }
         return BaseController.OK_MESSAGE;
     }
 
@@ -195,6 +207,16 @@ public class UserController extends BaseController {
 
     return BaseController.OK_MESSAGE;
   }
+
+    @PostMapping(path="/token")
+    public String updateToken(HttpSession session, @Valid @ RequestBody Token token){
+        Long userId = getLoggedUser(session);
+        User u = userService.getUser(userId);
+        u.setToken(token.tokenId); // Set the token for the user
+        userService.crud().save(u); // Update the database
+
+        return BaseController.OK_MESSAGE;
+    }
 
     @GetMapping(path = "/me/ownedGroups")
     @JsonView(Views.Private.class)

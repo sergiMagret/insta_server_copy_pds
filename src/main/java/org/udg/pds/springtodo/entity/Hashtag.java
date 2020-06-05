@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.*;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity(name="hashtags")
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name", scope = Hashtag.class)
@@ -62,4 +63,5 @@ public class Hashtag implements Serializable {
     public Collection<Publication> getPublications(){
         return this.publications;
     }
+
 }

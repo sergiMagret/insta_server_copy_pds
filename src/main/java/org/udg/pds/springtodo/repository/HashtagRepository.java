@@ -1,5 +1,6 @@
 package org.udg.pds.springtodo.repository;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,4 +16,7 @@ public interface HashtagRepository extends CrudRepository<Hashtag, Long> {
 
     @Query("SELECT h FROM hashtags h")
     List<Hashtag> getAll();
+
+    @Query("SELECT h FROM hashtags h WHERE h.name LIKE :text ORDER BY  h.name")
+    List<Hashtag> getHashtagFiltered(String text, Pageable pageable);
 }
