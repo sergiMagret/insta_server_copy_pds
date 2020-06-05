@@ -162,6 +162,21 @@ public class PublicationController  extends BaseController{
                 publicationService.addHashtagTo(p, h);
             }
         }
+
+        // Send a notification to all the followers of the user
+        Set<User> followers = u.getFollowers();
+        NotificationRequest request = new NotificationRequest();
+        request.title = "New publication from " + u.getName();
+        request.body = u.getName() + "uploaded a new publication, go see it!";
+        for(User follower: followers){
+            if(follower.getToken() != null){
+                request.target = follower.getToken();
+                NotificationService.getInstance().sendNotification(request);
+            }else{
+                System.out.println("Can't send notification, token is null!");
+            }
+        }
+
         return p.getId();
     }
 
