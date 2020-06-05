@@ -1,7 +1,6 @@
 package org.udg.pds.springtodo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -9,11 +8,8 @@ import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.repository.PublicationRepository;
 
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Collection;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,7 +86,7 @@ public class PublicationService {
         if(pb.get().nTaggedUsers()>=20){
             resultat = 1;
         }
-        if(jaEtiquetat == true){
+        if(jaEtiquetat){
             resultat = 2;
         }
         else {

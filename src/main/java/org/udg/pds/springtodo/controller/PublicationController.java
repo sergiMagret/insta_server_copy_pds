@@ -1,11 +1,8 @@
 package org.udg.pds.springtodo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.ser.Serializers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.udg.pds.springtodo.controller.exceptions.ControllerException;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.*;
 import org.udg.pds.springtodo.service.*;
@@ -13,8 +10,8 @@ import org.udg.pds.springtodo.service.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.*;
 import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RequestMapping(path="/publications")
 @RestController
@@ -62,7 +59,7 @@ public class PublicationController  extends BaseController{
         l.add(op.get().getLikes());
         Optional<User> ou = userService.crud().findById(userId);
         if(!ou.isPresent()) throw new ServiceException("User does not exist!");
-        if(op.get().hasLiked(ou.get())==true){
+        if(op.get().hasLiked(ou.get())){
             l.add(1);
         }
         else{
@@ -80,7 +77,7 @@ public class PublicationController  extends BaseController{
 
     @GetMapping(path="/{id}/nComments")
     public Integer getNumComments(HttpSession session, @PathVariable("id") Long publicationId) {
-        Integer n = 0;
+        int n = 0;
         Optional<Publication> op = publicationService.crud().findById(publicationId);
         if(!op.isPresent()){
             throw new ServiceException("Publication does not exist!");
@@ -103,16 +100,14 @@ public class PublicationController  extends BaseController{
 
     @PostMapping(path="/{publicationId}/{username}/tag")
     public Integer tagUser(HttpSession session, @PathVariable("publicationId") Long publicationId, @PathVariable("username") String userName){
-        int res = publicationService.tagUser(userName, publicationId);
-
-        return res;
+        return publicationService.tagUser(userName, publicationId);
     }
 
     @PostMapping(path="/{id}/comments")
     @JsonView(Views.Private.class)
     public String addComment(HttpSession session, @Valid @RequestBody CommentPost comment){
         Long userId = this.getLoggedUser(session);
-        User u = userService.getUserProfile(userId);
+        User u = userService.getUser(userId);
         Publication p = publicationService.getPublication(comment.publicationId);
         Date currentDate = new Date();
         Comment c = new Comment(comment.text);
@@ -125,7 +120,7 @@ public class PublicationController  extends BaseController{
         if(u2.getToken() != null) { // If the token is null that means the user hasn't signed in to the app
             request.target = u2.getToken();
             request.title = "You have a new comment!";
-            request.body = "The user " + u2.getName() + " has commented your publication!";
+            request.body = "The user " + u.getName() + " has commented your publication!";
             String response = NotificationService.getInstance().sendNotification(request);
             System.out.println(response);
         }else{
@@ -139,8 +134,7 @@ public class PublicationController  extends BaseController{
     @PostMapping(path="/{id}/like")
     public Publication addLike(HttpSession session, @PathVariable("id") Long publicationId){
         Long userId = this.getLoggedUser(session);
-        Publication pb = publicationService.addLike(userId, publicationId);
-        return pb;
+        return publicationService.addLike(userId, publicationId);
     }
 
 
@@ -149,7 +143,7 @@ public class PublicationController  extends BaseController{
     public Long postPublication (HttpSession session,@Valid @RequestBody PublicationPost pub){
         Publication p = new Publication(pub.photo, pub.description, pub.date);
         Long loggedUserId = getLoggedUser(session);
-        User u = userService.getUserProfile(loggedUserId);
+        User u = userService.getUser(loggedUserId);
         p.setUser(u);
         u.addPublication(p);
         publicationService.addPublication(p);
@@ -193,8 +187,7 @@ public class PublicationController  extends BaseController{
     @DeleteMapping(path="/{id}/delLike")
     public Publication deleteLike(HttpSession session, @PathVariable("id") Long publicationId){
         Long userId = this.getLoggedUser(session);
-        Publication pb = publicationService.deleteLike(userId, publicationId);
-        return pb;
+        return publicationService.deleteLike(userId, publicationId);
     }
 
     @DeleteMapping(path="/{publicationId}/delComment/{commentId}")
@@ -211,8 +204,7 @@ public class PublicationController  extends BaseController{
                                 @PathVariable("publicationId") Long publicationId,
                                 @PathVariable("commentId") Long commentId,
                                 @Valid @RequestBody  CommentPost cp){
-        Comment c = commentService.editComment(commentId,cp.text);
-        return c;
+        return commentService.editComment(commentId,cp.text);
     }
 
 

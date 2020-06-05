@@ -35,14 +35,6 @@ public class Global {
 
     @Autowired
     private
-    TaskService taskService;
-
-    @Autowired
-    private
-    TagService tagService;
-
-    @Autowired
-    private
     PublicationService publicationService;
 
     @Autowired
@@ -81,7 +73,7 @@ public class Global {
             logger.warn("Cannot initialize minio service with url:" + minioURL + ", access-key:" + minioAccessKey + ", secret-key:" + minioSecretKey);
         }
 
-        if (minioBucket == "") {
+        if (minioBucket.equals("")) {
             logger.warn("Cannot initialize minio bucket: " + minioBucket);
             minioClient = null;
         }
@@ -144,14 +136,6 @@ public class Global {
         c.setPublication(p);
         c.setDate(cal.getTime());
         commentService.addComment(c);
-
-
-
-        IdObject taskId = taskService.addTask("Una tasca", user.getId(), new Date(), new Date());
-        Tag tag = tagService.addTag("ATag", "Just a tag");
-        taskService.addTagsToTask(user.getId(), taskId.getId(), new ArrayList<Long>() {{
-            add(tag.getId());
-        }});
 
         profPic = "https://www.dailymoss.com/wp-content/uploads/2019/08/funny-profile-pic59.jpg";
         desc = "Hi! I'm another user and this is my description.\nI like things like music :)";
