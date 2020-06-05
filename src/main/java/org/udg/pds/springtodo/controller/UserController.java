@@ -137,7 +137,7 @@ public class UserController extends BaseController {
         Long userId = getLoggedUser(session);
         userService.addFollowed(userId, followedId.id);
         NotificationRequest request = new NotificationRequest();
-        User u = userService.getUser(followedId.id);
+        User u = userService.getUser(userId);
         if(u.getToken() != null) { // If the token is null that means the user hasn't signed in to the app
             request.target = u.getToken();
             request.title = "You have a new follower!";
