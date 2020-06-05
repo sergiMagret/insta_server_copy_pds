@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.Hashtag;
-import org.udg.pds.springtodo.entity.Publication;
 import org.udg.pds.springtodo.repository.HashtagRepository;
-import org.udg.pds.springtodo.repository.PublicationRepository;
 
 import java.util.Collection;
 import java.util.List;
@@ -49,7 +47,7 @@ public class HashtagService {
     public Long getHashtagId(String name){
         List<Hashtag> hashtags = hashtagRepository.findByName(name);
         if(hashtags.size() == 0){
-            return Long.valueOf(-1);
+            throw new ServiceException("There's no hashtags with this ID!");
         }else{
             return hashtags.get(0).getId();
         }

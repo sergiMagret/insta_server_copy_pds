@@ -8,7 +8,6 @@ import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.Comment;
 import org.udg.pds.springtodo.entity.IdObject;
 import org.udg.pds.springtodo.repository.CommentRepository;
-import org.udg.pds.springtodo.repository.PublicationRepository;
 
 import java.text.SimpleDateFormat;
 import java.util.Collection;

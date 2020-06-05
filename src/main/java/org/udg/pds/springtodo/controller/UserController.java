@@ -2,26 +2,17 @@ package org.udg.pds.springtodo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
-import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.*;
-import org.udg.pds.springtodo.service.GroupService;
 import org.udg.pds.springtodo.service.NotificationService;
 import org.udg.pds.springtodo.service.PublicationService;
 import org.udg.pds.springtodo.service.UserService;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.text.View;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 // This class is used to process all the User related URLs
@@ -29,11 +20,8 @@ import java.util.List;
 @RestController
 public class UserController extends BaseController {
 
-  @Autowired
-  UserService userService;
-
     @Autowired
-    GroupService groupService;
+    UserService userService;
 
     @Autowired
     PublicationService publicationService;
@@ -53,7 +41,7 @@ public class UserController extends BaseController {
     @JsonView(Views.Private.class)
     public Collection<User> listAllTasks(HttpSession session,
                                          @RequestParam String text, @RequestParam Integer page, @RequestParam Integer size){
-        Long userId = getLoggedUser(session);
+        getLoggedUser(session);
 
         return userService.getUsers(text, page, size);
     }
@@ -137,11 +125,12 @@ public class UserController extends BaseController {
         Long userId = getLoggedUser(session);
         userService.addFollowed(userId, followedId.id);
         NotificationRequest request = new NotificationRequest();
-        User u = userService.getUser(userId);
-        if(u.getToken() != null) { // If the token is null that means the user hasn't signed in to the app
-            request.target = u.getToken();
+        User followedUser = userService.getUser(followedId.id);
+        User user = userService.getUser(userId);
+        if(followedUser.getToken() != null) { // If the token is null that means the user hasn't signed in to the app
+            request.target = followedUser.getToken();
             request.title = "You have a new follower!";
-            request.body = "The user " + u.getName() + " has started following you!";
+            request.body = "The user " + user.getName() + " has started following you!";
             String response = NotificationService.getInstance().sendNotification(request);
             System.out.println(response);
         }else{
@@ -191,15 +180,6 @@ public class UserController extends BaseController {
     return u;
   }
 
-  @GetMapping(path="/me")
-  @JsonView(Views.Complete.class)
-  public User getUserProfile(HttpSession session) {
-
-    Long loggedUserId = getLoggedUser(session);
-
-    return userService.getUserProfile(loggedUserId);
-  }
-
   @GetMapping(path="/check")
   public String checkLoggedIn(HttpSession session) {
 
@@ -217,23 +197,6 @@ public class UserController extends BaseController {
 
         return BaseController.OK_MESSAGE;
     }
-
-    @GetMapping(path = "/me/ownedGroups")
-    @JsonView(Views.Private.class)
-    public Collection<Group> getOwnedGroups(HttpSession session) {
-        Long userId = getLoggedUser(session);
-
-        return groupService.getOwnedGroups(userId);
-    }
-
-    @GetMapping(path = "/me/memberGroups")
-    @JsonView(Views.Private.class)
-    public Collection<Group> getMemberGroups(HttpSession session) {
-        Long userId = getLoggedUser(session);
-
-        return groupService.getMemberGroups(userId);
-    }
-
 
     static class DataToMod{
         public String pic;
