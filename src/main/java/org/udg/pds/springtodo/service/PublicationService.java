@@ -49,7 +49,7 @@ public class PublicationService {
         Pageable p = PageRequest.of(page, size);
         Optional<Hashtag> oh = hashtagService.crud().findById(id);
         if(!oh.isPresent()) throw new ServiceException("User does not exist!");
-        return publicationRepository.getAllfromHastag(oh.get().getPublications(), p);
+        return publicationRepository.getAllfromHastag(oh.get(), p);
     }
 
     public IdObject addPublication (Publication p) {

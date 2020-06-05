@@ -173,7 +173,7 @@ public class User implements Serializable {
         return followed;
     }
 
-    @JsonIgnore
+    /*@JsonIgnore
     @JsonView(Views.Public.class)
     public List<User> getFollowedPage(Pageable pageable){
         int pageSize = pageable.getPageSize();
@@ -208,7 +208,7 @@ public class User implements Serializable {
             list = llistaF.subList(startItem, toIndex);
         }
         return list;
-    }
+    }*/
 
 
     @JsonIgnore

@@ -26,8 +26,8 @@ public interface PublicationRepository extends CrudRepository<Publication, Long>
     @Query("SELECT p FROM  publications p WHERE  p.user=:user ORDER BY p.date")
     List <Publication> getAllfromUser(User user, Pageable p);
 
-    @Query("SELECT p FROM  publications p WHERE  p IN (:Hpublications) ORDER BY p.date")
-    List <Publication> getAllfromHastag(Collection<Publication> Hpublications, Pageable p);
+    @Query("SELECT p FROM  publications p WHERE  :hastags member of p.hashtags ORDER BY p.date")
+    List <Publication> getAllfromHastag(Hashtag hastags, Pageable p);
 
 }
 

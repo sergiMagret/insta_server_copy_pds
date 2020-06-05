@@ -1,12 +1,12 @@
 package org.udg.pds.springtodo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
 import org.udg.pds.springtodo.entity.Hashtag;
-import org.udg.pds.springtodo.entity.Publication;
 import org.udg.pds.springtodo.repository.HashtagRepository;
-import org.udg.pds.springtodo.repository.PublicationRepository;
 
 import java.util.Collection;
 import java.util.List;
@@ -24,8 +24,9 @@ public class HashtagService {
         return hashtagRepository;
     }
 
-    public Collection<Hashtag> getHashtags(){
-        return hashtagRepository.getAll();
+    public Collection<Hashtag> getHashtags(Integer page, Integer size) {
+        Pageable p = PageRequest.of(page, size);
+        return hashtagRepository.getAll(p);
     }
 
     public Hashtag getHashtag(Long id){
