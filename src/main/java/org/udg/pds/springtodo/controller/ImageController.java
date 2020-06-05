@@ -42,12 +42,10 @@ public class ImageController extends BaseController {
             String objectName = imgName + "." + FilenameUtils.getExtension(file.getOriginalFilename());
             // Upload the file to the bucket with putObject
             minioClient.putObject(global.getMinioBucket(),
-                    objectName,
-                    istream,
-                    contentType);
-
-            return "http://localhost:8080/images/" + objectName;
-
+                objectName,
+                istream,
+                contentType);
+            return String.format("\"%s\"", "http://localhost:8080/images/" + objectName);
         } catch (Exception e) {
             throw new ControllerException("Error saving file: " + e.getMessage());
         }
