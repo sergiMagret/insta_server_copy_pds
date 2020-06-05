@@ -15,8 +15,8 @@ public class Comment implements Serializable {
     public Comment(){
 
     }
-    public Comment(String commentari){
-        text=commentari;
+    public Comment(String comentari){
+        text=comentari;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

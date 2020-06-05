@@ -8,7 +8,6 @@ import org.udg.pds.springtodo.serializer.JsonDateDeserializer;
 import org.udg.pds.springtodo.serializer.JsonDateSerializer;
 
 import javax.persistence.*;
-import javax.swing.text.View;
 import java.io.Serializable;
 import java.util.*;
 import java.text.SimpleDateFormat;
@@ -63,7 +62,7 @@ public class Publication implements Serializable {
     private Long userId;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Hashtag> hashtags = new HashSet<>(); // Set because a publication can't cave the same hashtag more than once.
+    private Set<Hashtag> hashtags = new HashSet<>(); // Set because a publication can't have the same hashtag more than once.
 
     @JsonView(Views.Public.class)
     public Long getId() {
