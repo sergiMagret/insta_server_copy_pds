@@ -50,7 +50,7 @@ public class HashtagService {
     public Long getHashtagId(String name){
         List<Hashtag> hashtags = hashtagRepository.findByName(name);
         if(hashtags.size() == 0){
-            return Long.valueOf(-1);
+            throw new ServiceException("There's no hashtags with this ID!");
         }else{
             return hashtags.get(0).getId();
         }

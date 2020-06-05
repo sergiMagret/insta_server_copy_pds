@@ -1,13 +1,10 @@
 package org.udg.pds.springtodo.entity;
 
-import com.fasterxml.jackson.annotation.*;
-import org.hibernate.validator.constraints.Range;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.udg.pds.springtodo.service.PublicationService;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -71,9 +68,6 @@ public class User implements Serializable {
     * the notification should be sent to a list of pending notifications for the user. */
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Collection<Task> tasks;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Publication> publications;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -81,14 +75,6 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Comment> Comments;
-
-    // Use Set<> to avoid duplicates. A group cannot be owned more than once
-    @OneToMany(mappedBy = "owner")
-    private Set<Group> ownedGroups = new HashSet<>();
-
-    // Use Set<> to avoid duplicates. A member cannot be duplicated in a group
-    @ManyToMany(mappedBy = "members", cascade = CascadeType.ALL)
-    private Set<Group> memberGroups = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "followed")
     private Set<User> followers = new HashSet<>(); // Using a Set because a user can't be followed more than once by the same user
@@ -226,15 +212,6 @@ public class User implements Serializable {
         return password;
     }
 
-    @JsonView(Views.Complete.class)
-    public Collection<Task> getTasks() {
-        // Since tasks is collection controlled by JPA, it has LAZY loading by default. That means
-        // that you have to query the object (calling size(), for example) to get the list initialized
-        // More: http://www.javabeat.net/jpa-lazy-eager-loading/
-        tasks.size();
-        return tasks;
-    }
-
     @JsonIgnore // You only want the full publications list when it's necessary, when serializing the user, it's not necessary.
     public Collection<Publication> getPublications(){
         // Since publications is collection controlled by JPA, it has LAZY loading by default. That means
@@ -273,29 +250,4 @@ public class User implements Serializable {
     public String getToken(){
         return this.tokenFCM;
     }
-
-    public void addTask(Task task) {
-        tasks.add(task);
-    }
-
-    @JsonView(Views.Private.class)
-    public Collection<Group> getOwnedGroups() {
-        ownedGroups.size();
-        return ownedGroups;
-    }
-
-    public void addOwnedGroup(Group g) {
-        ownedGroups.add(g);
-    }
-
-    @JsonView(Views.Complete.class)
-    public Collection<Group> getMemberGroups() {
-        memberGroups.size();
-        return memberGroups;
-    }
-
-    public void addMemberGroup(Group g) {
-        memberGroups.add(g);
-    }
-
 }

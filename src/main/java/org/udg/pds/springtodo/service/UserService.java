@@ -1,17 +1,13 @@
 package org.udg.pds.springtodo.service;
 
-import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.udg.pds.springtodo.controller.exceptions.ServiceException;
-import org.udg.pds.springtodo.entity.Task;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.repository.UserRepository;
 
-import javax.validation.constraints.Null;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -73,13 +69,6 @@ public class UserService {
       return u;
   }
 
-  public User getUserProfile(long id) {
-    User u = this.getUser(id);
-    for (Task t : u.getTasks())
-        t.getTags();
-    return u;
-  }
-
   public Collection<User> getUsers(String text, Integer page, Integer size) {
       Pageable p = PageRequest.of(page, size);
       String filter = "%" + text + "%";
@@ -126,13 +115,6 @@ public class UserService {
         }
         return userRepository.getFollowers(ou.get(), p);
     }
-    public Collection<User> getFollowers(Long userId){
-        Optional<User> ou = userRepository.findById(userId);
-        if(!ou.isPresent()){
-            throwUserDoesNotExist(userId);
-        }
-        return ou.get().getFollowers();
-    }
 
     public List<User> getFollowedPage(Long userId, Integer page, Integer size){
         Pageable p = PageRequest.of(page, size);
@@ -149,10 +131,6 @@ public class UserService {
         }
         return ou.get().getFollowed();
     }
-
-  public Collection<User> getUsers(){
-    return userRepository.getAll();
-  }
 
   private void throwUserDoesNotExist(Long userId){
       throw new ServiceException("User with id " + userId + " does not exist!");
