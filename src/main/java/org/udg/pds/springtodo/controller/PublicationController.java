@@ -134,7 +134,22 @@ public class PublicationController  extends BaseController{
     @PostMapping(path="/{id}/like")
     public Publication addLike(HttpSession session, @PathVariable("id") Long publicationId){
         Long userId = this.getLoggedUser(session);
-        return publicationService.addLike(userId, publicationId);
+        User u = userService.getUser(userId);
+        Publication pb = publicationService.addLike(userId, publicationId);
+        User u2 = pb.getUser();
+        NotificationRequest request = new NotificationRequest();
+        if(u.getToken() != null){
+            if(u2.getId() != userId) { // Don't notificate self-likes
+                request.target = u.getToken();
+                request.title = "You have a new like!";
+                request.body = "The user " + u.getName() + " has liked your publication";
+                String response = NotificationService.getInstance().sendNotification(request);
+                System.out.println(response);
+            }
+        }else{
+            System.out.println("Can't send the notification, the token is null");
+        }
+        return pb;
     }
 
 
