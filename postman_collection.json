@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b1915b2d-6e23-416d-b7e4-b594b71ab926",
+		"_postman_id": "bdbe9da4-1b5c-49c0-955a-7509a22f9bf8",
 		"name": "PDS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -138,54 +138,6 @@
 			},
 			"response": [
 				{
-					"name": "Register user ok",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/users/register",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"register"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain;charset=UTF-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "4"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 14 Feb 2019 10:30:15 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "\"ok\""
-				},
-				{
 					"name": "Register user error: email already exists",
 					"originalRequest": {
 						"method": "POST",
@@ -236,6 +188,54 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"timestamp\": \"2019-02-14T10:30:34.497+0000\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Email already exist\",\n    \"path\": \"/users/register\"\n}"
+				},
+				{
+					"name": "Register user ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"yo\",\n\t\"email\": \"yp@yo.com\",\n\t\"password\": \"yo\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 14 Feb 2019 10:30:15 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "\"ok\""
 				}
 			]
 		},
@@ -372,39 +372,13 @@
 			]
 		},
 		{
-			"name": "localhost:8080/hashtags",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/hashtags",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"hashtags"
-					]
-				},
-				"description": "URI: <b> GET /hashtags </b> <br>\nPer llistar tots els hashtags."
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/hashtags",
+			"name": "localhost:8080/users/token",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"SomeHashtag\"\n}",
+					"raw": "{\n\t\"tokenId\":\"abcdefghijklmnñopqrstuvwxyz\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -412,57 +386,16 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/hashtags",
+					"raw": "localhost:8080/users/token",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"hashtags"
+						"users",
+						"token"
 					]
-				},
-				"description": "URI: <b> POST /hashtags </b> <br>\nPer crear un hashtag nou. <br>\nAl body hi ha d'haver:\n<ul>\n\t<li> name </li>\n</ul>"
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/hashtags/1",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/hashtags/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"hashtags",
-						"1"
-					]
-				},
-				"description": "URI: <b> GET /hashtags/{id} </b> <br>\nPer agafar el hashtag amb identificador \"id\"."
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/hashtags/1/publications",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/hashtags/1/publications",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"hashtags",
-						"1",
-						"publications"
-					]
-				},
-				"description": "URI: <b> GET /hashtags/{id}/publications </b> <br>\nPer agafar les publicacions del hashtag amb identificador \"id\"."
+				}
 			},
 			"response": []
 		},
@@ -1102,6 +1035,193 @@
 						"1",
 						"usuari",
 						"tag"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags?page=0&size=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags",
+						"1"
+					]
+				},
+				"description": "URI: <b> GET /hashtags/{id} </b> <br>\nPer agafar el hashtag amb identificador \"id\"."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags/1/publications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags/1/publications?page=0&size=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags",
+						"1",
+						"publications"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags/name/{name}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags/name/hola",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags",
+						"name",
+						"hola"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/hashtags/name/{name}/publications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/hashtags/name/hola/publications?page=0&size=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hashtags",
+						"name",
+						"hola",
+						"publications"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/publications/{id}/editComment/{commentId}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\":\"hola\",\n\t\"publicationId\":3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/publications/1/editComment/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publications",
+						"1",
+						"editComment",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/self",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pic\":\"https://images.unsplash.com/photo-1559628129-67cf63b72248?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\",\n\t\"name\":\"Maria\",\n\t\"desc\":\"Hola!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/self",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"self"
 					]
 				}
 			},
