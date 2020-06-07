@@ -232,4 +232,54 @@ TOTAL: 89 SP
 
 TOTAL: 80 SP
 
+# Sprint 4
+
+## Oliu Llorente Moragrega
+*[Modify taguser_layout to add the search an recycler view option](https://wuilder.com/jira/browse/PDS20_2B-227) -> 8 SP
+*[Modify the TagPeople activity to add the recycler view](https://wuilder.com/jira/browse/PDS20_2B-228) -> 8 SP
+*[Modify the TagPeople activity to add the search funtionality so a user can directly tag another user from there](https://wuilder.com/jira/browse/PDS20_2B-229) -> 8 SP
+
+Total: 24 SP
+
+## Sergi Magret Goy
+*[Add Firebase to the Spring Server](https://wuilder.com/jira/browse/PDS20_2B-222) -> 21 SP
+* [Update Firebase in Android](https://wuilder.com/jira/browse/PDS20_2B-223) -> 13 SP
+* [Send notification when there's a new follow](https://wuilder.com/jira/browse/PDS20_2B-224) -> 5 SP
+* [Add refresh option into Comments list](https://wuilder.com/jira/browse/PDS20_2B-221) -> 5 SP
+* [Delete all unnecessary files/code](https://wuilder.com/jira/browse/PDS20_2B-230) -> 5 SP
+* [Modify user profile to show text instead of publications if you are not following user](https://wuilder.com/jira/browse/PDS20_2B-220) -> 5 SP
+* [Update Spring to send notifications](https://wuilder.com/jira/browse/PDS20_2B-237) -> 5 SP
+
+TOTAL: 59 SP
+
+
+## Pau Casademont i Colomer
+* [As an authenticated user I would like to recive notifications when someone likes my photos](https://wuilder.com/jira/browse/PDS20_2B-215) -> 5 SP
+* [Fix that when a user logs out and goes back the application closes instead of going back to the previous screen](https://wuilder.com/jira/browse/PDS20_2B-211) -> 5 SP
+
+TOTAL: 10 SP
+
+## Ainhoa Vázquez Zarza
+* [Modify Add Photo to use minio ](https://wuilder.com/jira/browse/PDS20_2B-128) -> 34 SP
+* [Modify the timeline to show publications ](https://wuilder.com/jira/browse/PDS20_2B-129) -> 8 
+* [Modify user’s profile to show publications ](https://wuilder.com/jira/browse/PDS20_2B-130) -> 8 
+* [Modify app server initialization using minio] (https://wuilder.com/jira/browse/PDS20_2B-131)  -> 8 
+* [Modify "Modify profile" to upload photos from the gallery using minio] (https://wuilder.com/jira/browse/PDS20_2B-187)  -> 8 
+* [Modify the user profile to show profile picture ] (https://wuilder.com/jira/browse/PDS20_2B-188)  -> 8 
+* [Change the display of publications in the search by hastaghs ] (https://wuilder.com/jira/browse/PDS20_2B-238)  -> 8 
+
+TOTAL: 82 SP
+
+## Maria Sunyer i Rigau
+* [Edit pageable get /hashtags/{id}/publications and get /hashtags/name/{name}/publications](https://wuilder.com/jira/browse/PDS20_2B-231) -> 8 SP
+* [Change path names - Spring](https://wuilder.com/jira/browse/PDS20_2B-232) -> 5 SP
+* [Change path names - Android](https://wuilder.com/jira/browse/PDS20_2B-234) -> 3 SP
+* [Add page/size to GET /hashtags](https://wuilder.com/jira/browse/PDS20_2B-235) -> 5 SP
+* [Update postman](https://wuilder.com/jira/browse/PDS20_2B-233) -> 5 SP
+* [Add firebase to android](https://wuilder.com/jira/browse/PDS20_2B-225) -> 13 SP
+* [Modify spring to send the notification](https://wuilder.com/jira/browse/PDS20_2B-226) -> 5 SP
+* [Fix page/size in get followers and get followed](https://wuilder.com/jira/browse/PDS20_2B-236) -> 5 SP
+
+TOTAL: 49 SP
+
 
