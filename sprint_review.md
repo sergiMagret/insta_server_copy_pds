@@ -235,14 +235,14 @@ TOTAL: 80 SP
 # Sprint 4
 
 ## Oliu Llorente Moragrega
-*[Modify taguser_layout to add the search an recycler view option](https://wuilder.com/jira/browse/PDS20_2B-227) -> 8 SP
-*[Modify the TagPeople activity to add the recycler view](https://wuilder.com/jira/browse/PDS20_2B-228) -> 8 SP
-*[Modify the TagPeople activity to add the search funtionality so a user can directly tag another user from there](https://wuilder.com/jira/browse/PDS20_2B-229) -> 8 SP
+* [Modify taguser_layout to add the search an recycler view option](https://wuilder.com/jira/browse/PDS20_2B-227) -> 8 SP
+* [Modify the TagPeople activity to add the recycler view](https://wuilder.com/jira/browse/PDS20_2B-228) -> 8 SP
+* [Modify the TagPeople activity to add the search funtionality so a user can directly tag another user from there](https://wuilder.com/jira/browse/PDS20_2B-229) -> 8 SP
 
 Total: 24 SP
 
 ## Sergi Magret Goy
-*[Add Firebase to the Spring Server](https://wuilder.com/jira/browse/PDS20_2B-222) -> 21 SP
+* [Add Firebase to the Spring Server](https://wuilder.com/jira/browse/PDS20_2B-222) -> 21 SP
 * [Update Firebase in Android](https://wuilder.com/jira/browse/PDS20_2B-223) -> 13 SP
 * [Send notification when there's a new follow](https://wuilder.com/jira/browse/PDS20_2B-224) -> 5 SP
 * [Add refresh option into Comments list](https://wuilder.com/jira/browse/PDS20_2B-221) -> 5 SP
@@ -263,10 +263,10 @@ TOTAL: 10 SP
 * [Modify Add Photo to use minio ](https://wuilder.com/jira/browse/PDS20_2B-128) -> 34 SP
 * [Modify the timeline to show publications ](https://wuilder.com/jira/browse/PDS20_2B-129) -> 8 
 * [Modify user’s profile to show publications ](https://wuilder.com/jira/browse/PDS20_2B-130) -> 8 
-* [Modify app server initialization using minio] (https://wuilder.com/jira/browse/PDS20_2B-131)  -> 8 
-* [Modify "Modify profile" to upload photos from the gallery using minio] (https://wuilder.com/jira/browse/PDS20_2B-187)  -> 8 
-* [Modify the user profile to show profile picture ] (https://wuilder.com/jira/browse/PDS20_2B-188)  -> 8 
-* [Change the display of publications in the search by hastaghs ] (https://wuilder.com/jira/browse/PDS20_2B-238)  -> 8 
+* [Modify app server initialization using minio](https://wuilder.com/jira/browse/PDS20_2B-131)  -> 8 
+* [Modify "Modify profile" to upload photos from the gallery using minio](https://wuilder.com/jira/browse/PDS20_2B-187)  -> 8 
+* [Modify the user profile to show profile picture ](https://wuilder.com/jira/browse/PDS20_2B-188)  -> 8 
+* [Change the display of publications in the search by hastaghs ](https://wuilder.com/jira/browse/PDS20_2B-238)  -> 8 
 
 TOTAL: 82 SP
 
