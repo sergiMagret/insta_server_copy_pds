@@ -1,6 +1,7 @@
-# TODOjavaee
+# InstaSpring
+An Instagram clone we did in 2020 for the subject Software Development Project.  
 
-This is a Spring Boot application that implements an pure API REST for a TODO appication. It is used for educational purposes and the goal is to show good practices when building multi-tier applications with JavaEE (and in general). It works with the the [TODOandroid](https://github.com/neich/TODOAndroid) Android application as client.
+This is a Spring Boot application that implements an pure API REST for the [InstaAndriod](https://github.com/sergiMagret/insta_android_copy_pds/) appication. It is used for educational purposes and the goal is to show good practices when building multi-tier applications with Java (and in general). It works with the the [InstaAndriod](https://github.com/sergiMagret/insta_android_copy_pds/) Android application as client.
 
 The main three tiers used are:
 
@@ -13,6 +14,8 @@ Other Java APIs used:
 * Bean validation
 * Exception Mappers
 * Dependency injection
+* Firebase
+* Minio
 
 It uses [Spring Boot 2](https://spring.io/projects/spring-boot) to produce an jar file than can be executed standalone without an application server:
 
@@ -34,4 +37,3 @@ java -Dswarm.project.minio.ulr=http://your-minio-host.com -Dswarm.project.minio.
 ## Heroku
 
 The app is ready to deploy into [Heroku](http://heroku.com) with the ```web``` profile. There is a file ```Procfile``` with the command line arguments to start the jar.
-#### Collaborations are welcome!
