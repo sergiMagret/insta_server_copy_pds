@@ -3,6 +3,8 @@ An Instagram clone we did in 2020 for the subject Software Development Project.
 
 This is a Spring Boot application that implements an pure API REST for the [InstaAndriod](https://github.com/sergiMagret/insta_android_copy_pds/) appication. It is used for educational purposes and the goal is to show good practices when building multi-tier applications with Java (and in general). It works with the the [InstaAndriod](https://github.com/sergiMagret/insta_android_copy_pds/) Android application as client.
 
+(The teacher gave us a basic application from which every group would start its application, the basic app can be foun in [TODOSpring](https://github.com/neich/TODOSpring))
+
 The main three tiers used are:
 
 * REST tier (```@Controller```)
